@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace CarBookProject.Domain.Entities
 {
-    public class Feature
+    public class Category
     {
-        public int FeatureId { get; set; }
+        public int CategoryId { get; set; }
         public string Name { get; set; }
-        public List<CarFeature> CarFeatures { get; set; }
     }
 }
