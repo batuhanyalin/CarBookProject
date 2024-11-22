@@ -21,7 +21,7 @@ namespace CarBookProject.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> ListFeature()
         {
-            var values = _mediator.Send(new GetFeatureQuery()); //Send Metodu handlerlara istekte bulunmayı sağlıyor.
+            var values = await _mediator.Send(new GetFeatureQuery()); //Send Metodu handlerlara istekte bulunmayı sağlıyor.
             return Ok(values);
         }
         [HttpGet("{id}")]
