@@ -55,7 +55,7 @@ builder.Services.AddScoped<UpdateContactCommandHandler>();
 builder.Services.AddScoped<DeleteContactCommandHandler>();
 
 
-builder.Services.AddApplicationService(builder.Configuration);
+builder.Services.AddApplicationService(builder.Configuration);//ServiceRegistration sýnýfýnýn içindeki metodu çaðýrýyoruz.
 
 
 builder.Services.AddControllers();
