@@ -1,5 +1,6 @@
 ﻿using CarBookProject.Application.Features.Mediator.Commands.LocationCommands;
 using CarBookProject.Application.Features.Mediator.Queries.LocationQueries;
+using CarBookProject.Application.Features.Mediator.Queries.TestimonialQueries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ namespace CarBookProject.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> ListLocation()
         {
-            var values = await _mediator.Send(new GetLocationQuery());
+            var values = await _mediator.Send(new GetTestimonialQuery());
             return Ok(values);
         }
         [HttpGet("{id}")]

@@ -4,8 +4,15 @@ namespace CarBook.WebUI.Controllers
 {
     public class AboutController : Controller
     {
-        public IActionResult Index()
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public AboutController(IHttpClientFactory httpClientFactory)
         {
+            _httpClientFactory = httpClientFactory;
+        }
+
+        public IActionResult Index()
+        {       
             return View();
         }
     }

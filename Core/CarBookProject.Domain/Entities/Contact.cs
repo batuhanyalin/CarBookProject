@@ -17,7 +17,7 @@ namespace CarBookProject.Domain.Entities
         public string Text { get; set; }
         public DateTime SendingDate { get; set; }
         public int ContactCategoryId { get; set; }
-        public ContactCategory? ContactCategory { get; set; }
+        public ContactCategory ContactCategory { get; set; }
         public bool IsApproved { get; set; }
     }
 }

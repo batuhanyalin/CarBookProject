@@ -12,5 +12,6 @@ namespace CarBookProject.Application.Features.CQRS.Commands.BannerCommands
         public string Description { get; set; }
         public string VideoDescription { get; set; }
         public string VideoUrl { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

@@ -25,7 +25,9 @@ namespace CarBookProject.Application.Features.CQRS.Handlers.BannerHandlers
                 Description = command.Description,
                 Title = command.Title,
                 VideoDescription = command.VideoDescription,
-                VideoUrl = command.VideoUrl
+                VideoUrl = command.VideoUrl,
+                ImageUrl = command.ImageUrl
+               
             });
         }
     }

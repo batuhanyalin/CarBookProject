@@ -10,6 +10,6 @@ namespace CarBookProject.Domain.Entities
     {
         public int ContactCategoryId { get; set; }
         public string Name { get; set; }
-        public List<Contact>? Contacts { get; set; }
+        public List<Contact> Contacts { get; set; }
     }
 }

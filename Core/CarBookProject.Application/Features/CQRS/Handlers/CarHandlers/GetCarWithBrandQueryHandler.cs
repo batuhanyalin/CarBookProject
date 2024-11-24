@@ -19,7 +19,7 @@ namespace CarBookProject.Application.Features.CQRS.Handlers.CarHandlers
             _repository = repository;
         }
 
-        public async Task<List<GetCarWithBrandQueryResult>> Handle()
+        public List<GetCarWithBrandQueryResult> Handle()
         {
             var values = _repository.GetCarListWithBrands();
             return values.Select(x => new GetCarWithBrandQueryResult

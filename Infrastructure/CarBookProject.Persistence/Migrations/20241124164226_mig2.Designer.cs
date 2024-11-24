@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarBookProject.Persistence.Migrations
 {
     [DbContext(typeof(CarBookContext))]
-    [Migration("20241119020107_mig1")]
-    partial class mig1
+    [Migration("20241124164226_mig2")]
+    partial class mig2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,35 @@ namespace CarBookProject.Persistence.Migrations
                     b.ToTable("Abouts");
                 });
 
+            modelBuilder.Entity("CarBookProject.Domain.Entities.Author", b =>
+                {
+                    b.Property<int>("AuthorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuthorId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AuthorId");
+
+                    b.ToTable("Authors");
+                });
+
             modelBuilder.Entity("CarBookProject.Domain.Entities.Banner", b =>
                 {
                     b.Property<int>("BannerId")
@@ -59,6 +88,10 @@ namespace CarBookProject.Persistence.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BannerId"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -77,6 +110,48 @@ namespace CarBookProject.Persistence.Migrations
                     b.HasKey("BannerId");
 
                     b.ToTable("Banners");
+                });
+
+            modelBuilder.Entity("CarBookProject.Domain.Entities.Blog", b =>
+                {
+                    b.Property<int>("BlogId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BlogId"));
+
+                    b.Property<string>("AuthorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AuthorId1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CoverImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BlogId");
+
+                    b.HasIndex("AuthorId1");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Blogs");
                 });
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.Brand", b =>
@@ -242,14 +317,27 @@ namespace CarBookProject.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
 
-                    b.Property<int>("CarId")
+                    b.Property<int?>("AuthorId")
                         .HasColumnType("int");
 
-                    b.Property<string>("User")
+                    b.Property<int>("BlogId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CommentId");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("BlogId");
 
                     b.HasIndex("CarId");
 
@@ -484,6 +572,25 @@ namespace CarBookProject.Persistence.Migrations
                     b.ToTable("Testimonials");
                 });
 
+            modelBuilder.Entity("CarBookProject.Domain.Entities.Blog", b =>
+                {
+                    b.HasOne("CarBookProject.Domain.Entities.Author", "Author")
+                        .WithMany("Blogs")
+                        .HasForeignKey("AuthorId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CarBookProject.Domain.Entities.Category", "Category")
+                        .WithMany("Blogs")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("CarBookProject.Domain.Entities.Car", b =>
                 {
                     b.HasOne("CarBookProject.Domain.Entities.Brand", "Brand")
@@ -546,13 +653,21 @@ namespace CarBookProject.Persistence.Migrations
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.Comment", b =>
                 {
-                    b.HasOne("CarBookProject.Domain.Entities.Car", "Car")
+                    b.HasOne("CarBookProject.Domain.Entities.Author", null)
                         .WithMany("Comments")
-                        .HasForeignKey("CarId")
+                        .HasForeignKey("AuthorId");
+
+                    b.HasOne("CarBookProject.Domain.Entities.Blog", "Blog")
+                        .WithMany("Comments")
+                        .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Car");
+                    b.HasOne("CarBookProject.Domain.Entities.Car", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("CarId");
+
+                    b.Navigation("Blog");
                 });
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.Contact", b =>
@@ -564,6 +679,18 @@ namespace CarBookProject.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("ContactCategory");
+                });
+
+            modelBuilder.Entity("CarBookProject.Domain.Entities.Author", b =>
+                {
+                    b.Navigation("Blogs");
+
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("CarBookProject.Domain.Entities.Blog", b =>
+                {
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.Brand", b =>
@@ -580,6 +707,11 @@ namespace CarBookProject.Persistence.Migrations
                     b.Navigation("CarPricings");
 
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("CarBookProject.Domain.Entities.Category", b =>
+                {
+                    b.Navigation("Blogs");
                 });
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.ContactCategory", b =>

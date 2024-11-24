@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarBookProject.Application.Features.Mediator.Commands.LocationCommands
 {
-    public class DeleteLocationCommand:IRequest
+    public class DeleteLocationCommand : IRequest
     {
         public int Id { get; set; }
 

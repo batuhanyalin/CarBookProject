@@ -27,6 +27,22 @@ namespace CarBookProject.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Authors",
+                columns: table => new
+                {
+                    AuthorId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Authors", x => x.AuthorId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Banners",
                 columns: table => new
                 {
@@ -35,7 +51,8 @@ namespace CarBookProject.Persistence.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     VideoDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    VideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    VideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,11 +78,17 @@ namespace CarBookProject.Persistence.Migrations
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CategoryId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.CategoryId);
+                    table.ForeignKey(
+                        name: "FK_Categories_Categories_CategoryId1",
+                        column: x => x.CategoryId1,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryId");
                 });
 
             migrationBuilder.CreateTable(
@@ -211,6 +234,37 @@ namespace CarBookProject.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Blogs",
+                columns: table => new
+                {
+                    BlogId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AuthorId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AuthorId1 = table.Column<int>(type: "int", nullable: false),
+                    CoverImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Blogs", x => x.BlogId);
+                    table.ForeignKey(
+                        name: "FK_Blogs_Authors_AuthorId1",
+                        column: x => x.AuthorId1,
+                        principalTable: "Authors",
+                        principalColumn: "AuthorId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Blogs_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Contacts",
                 columns: table => new
                 {
@@ -317,19 +371,42 @@ namespace CarBookProject.Persistence.Migrations
                 {
                     CommentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    User = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CarId = table.Column<int>(type: "int", nullable: false)
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BlogId = table.Column<int>(type: "int", nullable: false),
+                    AuthorId = table.Column<int>(type: "int", nullable: true),
+                    CarId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.CommentId);
                     table.ForeignKey(
+                        name: "FK_Comments_Authors_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "Authors",
+                        principalColumn: "AuthorId");
+                    table.ForeignKey(
+                        name: "FK_Comments_Blogs_BlogId",
+                        column: x => x.BlogId,
+                        principalTable: "Blogs",
+                        principalColumn: "BlogId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Comments_Cars_CarId",
                         column: x => x.CarId,
                         principalTable: "Cars",
-                        principalColumn: "CarId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CarId");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Blogs_AuthorId1",
+                table: "Blogs",
+                column: "AuthorId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Blogs_CategoryId",
+                table: "Blogs",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CarDescriptions_CarId",
@@ -362,6 +439,21 @@ namespace CarBookProject.Persistence.Migrations
                 column: "BrandId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Categories_CategoryId1",
+                table: "Categories",
+                column: "CategoryId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_AuthorId",
+                table: "Comments",
+                column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_BlogId",
+                table: "Comments",
+                column: "BlogId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Comments_CarId",
                 table: "Comments",
                 column: "CarId");
@@ -391,9 +483,6 @@ namespace CarBookProject.Persistence.Migrations
                 name: "CarPricings");
 
             migrationBuilder.DropTable(
-                name: "Categories");
-
-            migrationBuilder.DropTable(
                 name: "Comments");
 
             migrationBuilder.DropTable(
@@ -421,10 +510,19 @@ namespace CarBookProject.Persistence.Migrations
                 name: "Pricings");
 
             migrationBuilder.DropTable(
+                name: "Blogs");
+
+            migrationBuilder.DropTable(
                 name: "Cars");
 
             migrationBuilder.DropTable(
                 name: "ContactCategories");
+
+            migrationBuilder.DropTable(
+                name: "Authors");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Brands");

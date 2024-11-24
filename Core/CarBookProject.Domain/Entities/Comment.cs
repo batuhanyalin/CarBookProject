@@ -9,8 +9,9 @@ namespace CarBookProject.Domain.Entities
     public class Comment
     {
         public int CommentId { get; set; }
-        public string User { get; set; }
-        public int CarId { get; set; }
-        public Car Car { get; set; }
+        public string Text { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public int BlogId { get; set; }
+        public Blog Blog { get; set; }
     }
 }
