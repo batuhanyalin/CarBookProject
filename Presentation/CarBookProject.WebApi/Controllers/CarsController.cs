@@ -17,8 +17,9 @@ namespace CarBookProject.WebApi.Controllers
         private readonly GetCarQueryHandler _getCarQueryHandler;
         private readonly GetCarWithBrandQueryHandler _getCarWithBrandQueryHandler;
         private readonly GetCarLast5WithBrandQueryHandler _getCarLast5WithBrandQueryHandler;
+        private readonly GetCarWithPricingQueryHandler _getCarWithPricingQueryHandler;
 
-        public CarsController(GetCarByIdQueryHandler getCarByIdQueryHandler, CreateCarCommandHandler createCarCommandHandler, UpdateCarCommandHandler updateCarCommandHandler, DeleteCarCommandHandler deleteCarCommandHandler, GetCarQueryHandler getCarQueryHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler, GetCarLast5WithBrandQueryHandler getCarLast5WithBrandQueryHandler)
+        public CarsController(GetCarByIdQueryHandler getCarByIdQueryHandler, CreateCarCommandHandler createCarCommandHandler, UpdateCarCommandHandler updateCarCommandHandler, DeleteCarCommandHandler deleteCarCommandHandler, GetCarQueryHandler getCarQueryHandler, GetCarWithBrandQueryHandler getCarWithBrandQueryHandler, GetCarLast5WithBrandQueryHandler getCarLast5WithBrandQueryHandler, GetCarWithPricingQueryHandler getCarWithPricingQueryHandler)
         {
             _getCarByIdQueryHandler = getCarByIdQueryHandler;
             _createCarCommandHandler = createCarCommandHandler;
@@ -27,11 +28,18 @@ namespace CarBookProject.WebApi.Controllers
             _getCarQueryHandler = getCarQueryHandler;
             _getCarWithBrandQueryHandler = getCarWithBrandQueryHandler;
             _getCarLast5WithBrandQueryHandler = getCarLast5WithBrandQueryHandler;
+            _getCarWithPricingQueryHandler = getCarWithPricingQueryHandler;
         }
         [HttpGet]
         public async Task<IActionResult> ListCar()
         {
             var values = await _getCarQueryHandler.Handle();
+            return Ok(values);
+        }
+        [HttpGet("GetCarListWithPricing")]
+        public IActionResult GetCarListWithPricing()
+        {
+            var values = _getCarWithPricingQueryHandler.Handle();
             return Ok(values);
         }
         [HttpGet("GetCarLast5")]

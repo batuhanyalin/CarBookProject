@@ -24,7 +24,7 @@ namespace CarBookProject.Application.Features.CQRS.Handlers.CarHandlers
             var values = _repository.GetCarListWithBrands();
             return values.Select(x => new GetCarWithBrandQueryResult
             {
-                BrandName=x.Brand.Name,
+                BrandName = x.Brand.Name,
                 BigImageUrl = x.BigImageUrl,
                 BrandId = x.BrandId,
                 CarId = x.CarId,
@@ -34,7 +34,7 @@ namespace CarBookProject.Application.Features.CQRS.Handlers.CarHandlers
                 Luggage = x.Luggage,
                 Model = x.Model,
                 Seat = x.Seat,
-                Transmission = x.Transmission,
+                Transmission = x.Transmission
             }).ToList();
         }
     }
