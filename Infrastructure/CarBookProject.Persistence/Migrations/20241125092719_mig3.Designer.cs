@@ -4,6 +4,7 @@ using CarBookProject.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarBookProject.Persistence.Migrations
 {
     [DbContext(typeof(CarBookContext))]
-    partial class CarBookContextModelSnapshot : ModelSnapshot
+    [Migration("20241125092719_mig3")]
+    partial class mig3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -310,7 +313,13 @@ namespace CarBookProject.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
 
+                    b.Property<int?>("AuthorId")
+                        .HasColumnType("int");
+
                     b.Property<int>("BlogId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CarId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -322,7 +331,11 @@ namespace CarBookProject.Persistence.Migrations
 
                     b.HasKey("CommentId");
 
+                    b.HasIndex("AuthorId");
+
                     b.HasIndex("BlogId");
+
+                    b.HasIndex("CarId");
 
                     b.ToTable("Comments");
                 });
@@ -636,11 +649,19 @@ namespace CarBookProject.Persistence.Migrations
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.Comment", b =>
                 {
+                    b.HasOne("CarBookProject.Domain.Entities.Author", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("AuthorId");
+
                     b.HasOne("CarBookProject.Domain.Entities.Blog", "Blog")
                         .WithMany("Comments")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("CarBookProject.Domain.Entities.Car", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("CarId");
 
                     b.Navigation("Blog");
                 });
@@ -659,6 +680,8 @@ namespace CarBookProject.Persistence.Migrations
             modelBuilder.Entity("CarBookProject.Domain.Entities.Author", b =>
                 {
                     b.Navigation("Blogs");
+
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.Blog", b =>
@@ -678,6 +701,8 @@ namespace CarBookProject.Persistence.Migrations
                     b.Navigation("CarFeatures");
 
                     b.Navigation("CarPricings");
+
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.Category", b =>

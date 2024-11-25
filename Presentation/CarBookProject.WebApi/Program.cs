@@ -4,11 +4,14 @@ using CarBookProject.Application.Features.CQRS.Handlers.BrandHandlers;
 using CarBookProject.Application.Features.CQRS.Handlers.CarHandlers;
 using CarBookProject.Application.Features.CQRS.Handlers.CategoryHandlers;
 using CarBookProject.Application.Features.CQRS.Handlers.ContactHandlers;
+using CarBookProject.Application.Features.Mediator.Handlers.BlogHandlers;
 using CarBookProject.Application.Interfaces;
+using CarBookProject.Application.Interfaces.BlogInterfaces;
 using CarBookProject.Application.Interfaces.CarInterfaces;
 using CarBookProject.Application.Services;
 using CarBookProject.Persistence.Context;
 using CarBookProject.Persistence.Repositories;
+using CarBookProject.Persistence.Repositories.BlogRepositories;
 using CarBookProject.Persistence.Repositories.CarRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +20,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<CarBookContext>();
 builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>)); //** Typeof ile Repository sýnýfýný  tanýmlýyoruz.
 builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
+builder.Services.AddScoped(typeof(IBlogRepository), typeof(BlogRepository));
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
 builder.Services.AddScoped<CreateAboutCommandHandler>();
@@ -54,6 +58,15 @@ builder.Services.AddScoped<GetContactByIdQueryHandler>();
 builder.Services.AddScoped<CreateContactCommandHandler>();
 builder.Services.AddScoped<UpdateContactCommandHandler>();
 builder.Services.AddScoped<DeleteContactCommandHandler>();
+
+
+builder.Services.AddScoped<GetBlogQueryHandler>();
+builder.Services.AddScoped<GetBlogByIdQueryHandler>();
+builder.Services.AddScoped<CreateBlogCommandHandler>();
+builder.Services.AddScoped<UpdateBlogCommandHandler>();
+builder.Services.AddScoped<DeleteBlogCommandHandler>();
+builder.Services.AddScoped<GetBlogWithAllInfoByIdQueryHandler>();
+builder.Services.AddScoped<GetBlogLast3WithAllInfoQueryHandler>();
 
 
 builder.Services.AddApplicationService(builder.Configuration);//ServiceRegistration sýnýfýnýn içindeki metodu çaðýrýyoruz.
