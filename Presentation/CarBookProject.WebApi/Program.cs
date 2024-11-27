@@ -8,22 +8,28 @@ using CarBookProject.Application.Features.Mediator.Handlers.BlogHandlers;
 using CarBookProject.Application.Interfaces;
 using CarBookProject.Application.Interfaces.BlogInterfaces;
 using CarBookProject.Application.Interfaces.CarInterfaces;
+using CarBookProject.Application.Interfaces.CommentInterfaces;
 using CarBookProject.Application.Interfaces.ICarPricingInterfaces;
+using CarBookProject.Application.Interfaces.TagBlogInterfaces;
 using CarBookProject.Application.Services;
 using CarBookProject.Persistence.Context;
 using CarBookProject.Persistence.Repositories;
 using CarBookProject.Persistence.Repositories.BlogRepositories;
 using CarBookProject.Persistence.Repositories.CarPricingRepositories;
 using CarBookProject.Persistence.Repositories.CarRepositories;
+using CarBookProject.Persistence.Repositories.CommentRepositories;
+using CarBookProject.Persistence.Repositories.TagBlogRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<CarBookContext>();
-builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>)); //** Typeof ile Repository sýnýfýný  tanýmlýyoruz.
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); //** Typeof ile Repository sýnýfýný  tanýmlýyoruz.
 builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
 builder.Services.AddScoped(typeof(IBlogRepository), typeof(BlogRepository));
 builder.Services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepository));
+builder.Services.AddScoped(typeof(ICommentRepository), typeof(CommentRepository));
+builder.Services.AddScoped(typeof(ITagBlogRepository), typeof(TagBlogRepository));
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
 builder.Services.AddScoped<CreateAboutCommandHandler>();
@@ -71,6 +77,7 @@ builder.Services.AddScoped<UpdateBlogCommandHandler>();
 builder.Services.AddScoped<DeleteBlogCommandHandler>();
 builder.Services.AddScoped<GetBlogWithAllInfoByIdQueryHandler>();
 builder.Services.AddScoped<GetBlogLast3WithAllInfoQueryHandler>();
+builder.Services.AddScoped<GetBlogWithAllInfoQueryHandler>();
 
 
 builder.Services.AddApplicationService(builder.Configuration);//ServiceRegistration sýnýfýnýn içindeki metodu çaðýrýyoruz.
@@ -86,8 +93,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+	app.UseSwagger();
+	app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

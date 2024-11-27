@@ -1,0 +1,24 @@
+﻿@model List<CommentListDto>
+<div class="pt-5 mt-5">
+    <h3 class="mb-5">@Model.Count Yorum</h3>
+    <ul class="comment-list">
+        @foreach (var item in Model)
+        {
+            <li class="comment">
+                <div class="vcard bio">
+                    <img src="images/person_1.jpg">
+                </div>
+                <div class="comment-body">
+                    <h3>@item.Name @item.Surname</h3>
+                    <div class="meta">@item.CreatedDate.ToString("dd MMM yyy HH:ss")</div>
+                    <p>
+                        @item.Text
+                    </p>
+                </div>
+            </li>
+        }
+
+    </ul>
+    <!-- END comment-list -->
+    @await Component.InvokeAsync("_DefaultBlogDetailMakeCommentComponentPartial")
+</div>

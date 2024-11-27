@@ -1,0 +1,23 @@
+﻿@model AuthorListDto
+<div class="about-author d-flex p-4 bg-light">
+    <div class="bio mr-5">
+        <img src="@Model.ImageUrl" class="img-fluid mb-4">
+    </div>
+    <div class="desc">
+        <h3>@Model.Name @Model.Surname</h3>
+        <p>
+            @{
+                if (Model.Description?.Length > 230)
+                {
+                    @Model.Description.Substring(0, 230)
+                    ;
+                }
+                else
+                {
+                    @Model.Description?.ToString()
+                    ;
+                }
+            }...
+        </p>
+    </div>
+</div>

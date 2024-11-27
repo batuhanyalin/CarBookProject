@@ -1,0 +1,11 @@
+﻿@model List<TagBlogListDto>
+
+<div class="tag-widget post-tag-container mb-5 mt-5">
+    <div class="tagcloud">
+        @foreach (var item in Model)
+        {
+            <a href="/Blog/BlogListForTag/@item.tagId" class="tag-cloud-link">@item.tagName</a>
+        }
+
+    </div>
+</div>

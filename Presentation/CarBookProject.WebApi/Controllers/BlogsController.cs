@@ -20,25 +20,33 @@ namespace CarBookProject.WebApi.Controllers
         private readonly DeleteBlogCommandHandler _deleteBlogCommandHandler;
         private readonly GetBlogWithAllInfoByIdQueryHandler _getBlogWithAllInfoByIdQueryHandler;
         private readonly GetBlogLast3WithAllInfoQueryHandler _getBlogLast3WithAllInfoQueryHandler;
+        private readonly GetBlogWithAllInfoQueryHandler _getBlogWithAllInfoQueryHandler;
 
-        public BlogsController(GetBlogQueryHandler getBlogQueryHandler, GetBlogByIdQueryHandler getBlogByIdQueryHandler, CreateBlogCommandHandler createBlogCommandHandler, UpdateBlogCommandHandler updateBlogCommandHandler, DeleteBlogCommandHandler deleteBlogCommandHandler, GetBlogWithAllInfoByIdQueryHandler getBlogWithAllInfoByIdQueryHandler, GetBlogLast3WithAllInfoQueryHandler getBlogLast3WithAllInfoQueryHandler)
-        {
-            _getBlogQueryHandler = getBlogQueryHandler;
-            _getBlogByIdQueryHandler = getBlogByIdQueryHandler;
-            _createBlogCommandHandler = createBlogCommandHandler;
-            _updateBlogCommandHandler = updateBlogCommandHandler;
-            _deleteBlogCommandHandler = deleteBlogCommandHandler;
-            _getBlogWithAllInfoByIdQueryHandler = getBlogWithAllInfoByIdQueryHandler;
-            _getBlogLast3WithAllInfoQueryHandler = getBlogLast3WithAllInfoQueryHandler;
-        }
+		public BlogsController(GetBlogQueryHandler getBlogQueryHandler, GetBlogByIdQueryHandler getBlogByIdQueryHandler, CreateBlogCommandHandler createBlogCommandHandler, UpdateBlogCommandHandler updateBlogCommandHandler, DeleteBlogCommandHandler deleteBlogCommandHandler, GetBlogWithAllInfoByIdQueryHandler getBlogWithAllInfoByIdQueryHandler, GetBlogLast3WithAllInfoQueryHandler getBlogLast3WithAllInfoQueryHandler, GetBlogWithAllInfoQueryHandler getBlogWithAllInfoQueryHandler)
+		{
+			_getBlogQueryHandler = getBlogQueryHandler;
+			_getBlogByIdQueryHandler = getBlogByIdQueryHandler;
+			_createBlogCommandHandler = createBlogCommandHandler;
+			_updateBlogCommandHandler = updateBlogCommandHandler;
+			_deleteBlogCommandHandler = deleteBlogCommandHandler;
+			_getBlogWithAllInfoByIdQueryHandler = getBlogWithAllInfoByIdQueryHandler;
+			_getBlogLast3WithAllInfoQueryHandler = getBlogLast3WithAllInfoQueryHandler;
+			_getBlogWithAllInfoQueryHandler = getBlogWithAllInfoQueryHandler;
+		}
 
-        [HttpGet]
+		[HttpGet]
         public IActionResult ListBlog()
         {
             var values = _getBlogQueryHandler.Handle();
             return Ok(values);
         }
-        [HttpGet("GetBlogLast3")]
+		[HttpGet("GetBlogWithAllInfo")]
+		public IActionResult GetBlogWithAllInfo()
+		{
+			var values = _getBlogWithAllInfoQueryHandler.Handle();
+			return Ok(values);
+		}
+		[HttpGet("GetBlogLast3")]
         public IActionResult GetBlogLast3()
         {
             var values = _getBlogLast3WithAllInfoQueryHandler.Handle();

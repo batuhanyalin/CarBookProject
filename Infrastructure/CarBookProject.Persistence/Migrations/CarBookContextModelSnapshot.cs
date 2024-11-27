@@ -316,6 +316,14 @@ namespace CarBookProject.Persistence.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -522,6 +530,46 @@ namespace CarBookProject.Persistence.Migrations
                     b.ToTable("SocialMedias");
                 });
 
+            modelBuilder.Entity("CarBookProject.Domain.Entities.Tag", b =>
+                {
+                    b.Property<int>("TagId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TagId"));
+
+                    b.Property<string>("TagName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TagId");
+
+                    b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("CarBookProject.Domain.Entities.TagBlog", b =>
+                {
+                    b.Property<int>("TagBlogId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TagBlogId"));
+
+                    b.Property<int>("BlogId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TagBlogId");
+
+                    b.HasIndex("BlogId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("TagBlogs");
+                });
+
             modelBuilder.Entity("CarBookProject.Domain.Entities.Testimonial", b =>
                 {
                     b.Property<int>("TestimonialId")
@@ -656,6 +704,25 @@ namespace CarBookProject.Persistence.Migrations
                     b.Navigation("ContactCategory");
                 });
 
+            modelBuilder.Entity("CarBookProject.Domain.Entities.TagBlog", b =>
+                {
+                    b.HasOne("CarBookProject.Domain.Entities.Blog", "Blog")
+                        .WithMany("TagBlogs")
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CarBookProject.Domain.Entities.Tag", "Tag")
+                        .WithMany("TagBlogs")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blog");
+
+                    b.Navigation("Tag");
+                });
+
             modelBuilder.Entity("CarBookProject.Domain.Entities.Author", b =>
                 {
                     b.Navigation("Blogs");
@@ -664,6 +731,8 @@ namespace CarBookProject.Persistence.Migrations
             modelBuilder.Entity("CarBookProject.Domain.Entities.Blog", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("TagBlogs");
                 });
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.Brand", b =>
@@ -698,6 +767,11 @@ namespace CarBookProject.Persistence.Migrations
             modelBuilder.Entity("CarBookProject.Domain.Entities.Pricing", b =>
                 {
                     b.Navigation("CarPricings");
+                });
+
+            modelBuilder.Entity("CarBookProject.Domain.Entities.Tag", b =>
+                {
+                    b.Navigation("TagBlogs");
                 });
 #pragma warning restore 612, 618
         }

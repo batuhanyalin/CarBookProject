@@ -34,5 +34,7 @@ namespace CarBookProject.Persistence.Context
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<TagBlog> TagBlogs { get; set; }
     }
 }

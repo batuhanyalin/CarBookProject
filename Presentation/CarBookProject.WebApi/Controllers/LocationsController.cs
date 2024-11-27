@@ -20,7 +20,7 @@ namespace CarBookProject.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> ListLocation()
         {
-            var values = await _mediator.Send(new GetTestimonialQuery());
+            var values = await _mediator.Send(new GetLocationQuery());
             return Ok(values);
         }
         [HttpGet("{id}")]
