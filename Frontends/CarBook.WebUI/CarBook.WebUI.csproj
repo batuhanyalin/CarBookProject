@@ -7,11 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\ViewComponents\" />
-    <Folder Include="Areas\Admin\Views\Shared\Components\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +33,13 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\CarBookProject.Domain\CarBookProject.Domain.csproj" />
     <ProjectReference Include="..\CarBookProject.Dto\CarBookProject.Dto.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Admin\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
