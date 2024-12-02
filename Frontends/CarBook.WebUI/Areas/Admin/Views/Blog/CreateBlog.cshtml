@@ -1,0 +1,74 @@
+﻿@model BlogCreateDto
+@{
+    ViewData["Title"] = "CreateBlog";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Blog/Index">Bloglar</a></li>
+                    <li class="breadcrumb-item active">Yeni Blog Girişi</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="Blogd-title">Yeni Blog Girişi</h4>
+                <p class="Blogd-subtitle mb-4">Blog ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak işlemi tamamlayabilirsiniz.</p>
+                <form method="post">
+                    <div class="row">
+                        <div class="col col-md-4">
+                            <input type="hidden" asp-for="CreatedDate" value="@DateTime.Now" />
+                            <div class="form-group">
+                                <label>Kategori</label>
+                                <select class="form-control" asp-for=CategoryId asp-items="@ViewBag.categoryList">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col col-md-4">
+                            <div class="form-group">
+                                <label>Yazar</label>
+                                <select class="form-control" asp-for=AuthorId asp-items="@ViewBag.authorList">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col col-md-4">
+                            <div class="form-group">
+                                <label>Görsel</label>
+                                <input type="text" class="form-control" asp-for="CoverImageUrl">
+                                <span class="text-danger" asp-validation-for="CoverImageUrl"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-md-12">
+                            <label>Başlık</label>
+                            <input type="text" class="form-control" asp-for="Title" />
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col col-md-12">
+                            <label>Metin</label>
+                         <textarea class="form-control" rows="15" asp-for="Text"></textarea>
+                        </div>
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-primary waves-effect waves-light"><i class="mdi mdi-content-save-all"></i> Kaydet</button>
+                </form>
+            </div> <!-- end Blogd-body-->
+        </div> <!-- end Blogd-->
+    </div> <!-- end col -->
+</div>
+<!-- end row-->

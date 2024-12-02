@@ -1,0 +1,91 @@
+﻿@model CarCreateDto
+@{
+    ViewData["Title"] = "CreateCar";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Car/Index">Araçlar</a></li>
+                    <li class="breadcrumb-item active">Yeni Araç Girişi</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Yeni Araç Girişi</h4>
+                <p class="card-subtitle mb-4">Araç ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak işlemi tamamlayabilirsiniz.</p>
+
+                <form method="post">
+                    <div class="row">
+                        <div class="col col-md-4">
+                            <div class="form-group">
+                                <label>Marka</label>
+                                <select class="form-control" asp-for="BrandId" asp-items="@ViewBag.brandList">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Model</label>
+                                <input type="text" class="form-control" asp-for="Model">
+                                <span class="text-danger" asp-validation-for="Model"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Kapak Görsel</label>
+                                <input type="text" class="form-control" asp-for="CoverImageUrl">
+                                <span class="text-danger" asp-validation-for="CoverImageUrl"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Tam Görsel</label>
+                                <input type="text" class="form-control" asp-for="BigImageUrl">
+                                <span class="text-danger" asp-validation-for="BigImageUrl"></span>
+                            </div>
+                        </div>
+                        <div class="col col-md-4">
+                            <div class="form-group">
+                                <label>Koltuk Sayısı</label>
+                                <input type="number" class="form-control" asp-for="Seat">
+                                <span class="text-danger" asp-validation-for="Seat"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Bagaj Sayısı</label>
+                                <input type="number" class="form-control" asp-for="Luggage">
+                                <span class="text-danger" asp-validation-for="Luggage"></span>
+                            </div>
+                        </div>
+                        <div class="col col-md-4">
+                            <div class="form-group">
+                                <label>Kilometre</label>
+                                <input type="text" class="form-control" asp-for="Km">
+                                <span class="text-danger" asp-validation-for="Km"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Vites Türü</label>
+                                <input type="text" class="form-control" asp-for="Transmission">
+                                <span class="text-danger" asp-validation-for="Transmission"></span>
+                            </div>
+                            <div class="form-group">
+                                <label >Yakıt Türü</label>
+                                <input type="text" class="form-control" asp-for="Fuel">
+                                <span class="text-danger" asp-validation-for="Fuel"></span>
+                            </div>
+                        </div>
+                    </div>  
+                    <button type="submit" class="btn btn-primary waves-effect waves-light"><i class="mdi mdi-content-save-all"></i> Kaydet</button>
+                </form>
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div> <!-- end col -->
+</div>
+<!-- end row-->

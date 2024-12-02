@@ -1,0 +1,45 @@
+﻿@model ContactCategoryCreateDto
+@{
+    ViewData["Title"] = "CreateContactCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/ContactCategory/Index">İletişim Kategorileri</a></li>
+                    <li class="breadcrumb-item active">Yeni İletişim Kategori Girişi</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="ContactCategoryd-title">Yeni İletişim Kategori Girişi</h4>
+                <p class="ContactCategoryd-subtitle mb-4">İletişim Kategori ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak işlemi tamamlayabilirsiniz.</p>
+                <form method="post">
+                    <div class="row">
+                        <div class="col col-md-4">
+                            <div class="form-group">
+                                <label>İletişim Kategori Adı</label>
+                                <input type="text" class="form-control" asp-for="Name">
+                                <span class="text-danger" asp-validation-for="Name"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light"><i class="mdi mdi-content-save-all"></i> Kaydet</button>
+                </form>
+            </div> <!-- end ContactCategoryd-body-->
+        </div> <!-- end ContactCategoryd-->
+    </div> <!-- end col -->
+</div>
+<!-- end row-->

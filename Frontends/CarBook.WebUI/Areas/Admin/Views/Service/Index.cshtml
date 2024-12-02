@@ -1,0 +1,101 @@
+﻿@model List<ServiceListDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Dashboard/Index">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">Hizmetler</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h4 class="Serviced-title">Hizmet Listesi</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <a href="/Admin/Service/CreateService" class="btn btn-primary btn-rounded waves-effect waves-light">
+                        <i class="mdi mdi-gamepad-round"></i>  Yeni Hizmet Girişi
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <p class="Serviced-subtitle mb-4">
+                        Hizmetlarla ilgili ekleme, silme, güncelleme, arama ve listeleme gibi işlemleri bu sayfa güzerinden gerçekleştirebilirsiniz.
+                    </p>
+                </div>
+
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>İkon</th>
+                            <th>Hizmet Adı</th>
+                            <th>Açıklama</th>
+                            <th>Aksiyon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (Model.Count == 0)
+                            {
+                                <div class="alert alert-secondary" role="alert">
+                                    Herhangi bir Hizmet bulunamadı.
+                                </div>
+                            }
+                            else
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <th scope="row">@count</th>
+                                        <td><i style="font-size:medium" class="@item.Icon"></i></td>
+                                        <td>@item.Title</td>
+                                        <td>@item.Text</td>
+                                        <td>
+
+                                            <a href="/Admin/Service/UpdateService/@item.ServiceId" class="btn btn-warning btn-rounded waves-effect waves-light">
+                                                <i class="mdi mdi-update"></i>  Güncelle
+                                            </a>
+
+                                            <a href="/Admin/Service/DeleteService/@item.ServiceId" class="btn btn-danger btn-rounded waves-effect waves-light">
+                                                <i class="mdi mdi-delete-forever"></i>  Sil
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- end Serviced-body-->
+    </div>
+    <!-- end Serviced -->
+</div>

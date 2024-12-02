@@ -1,0 +1,104 @@
+﻿@model List<CarListDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Dashboard/Index">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">Araçlar</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h4 class="card-title">Araç Listesi</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                <a href="/Admin/Car/CreateCar" class="btn btn-primary btn-rounded waves-effect waves-light">
+                    <i class="mdi mdi-gamepad-round"></i>  Yeni Araç Girişi
+                </a>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col">
+                <p class="card-subtitle mb-4">
+                    Araçlarla ilgili ekleme, silme, güncelleme, arama ve listeleme gibi işlemleri bu sayfa güzerinden gerçekleştirebilirsiniz.
+                </p>
+            </div>
+
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Görsel</th>
+                        <th>Marka</th>
+                        <th>Model</th>
+                        <th>Km</th>
+                        <th>Vites</th>
+                        <th>Aksiyon</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <th scope="row">@count</th>
+                            <td><img height="70px" width="120px" src="@item.CoverImageUrl" /></td>
+                            <td>@item.BrandName</td>
+                            <td>@item.Model</td>
+                            <td>@item.Km</td>
+                            <td>@item.Transmission</td>
+                            <td>
+                                <a href="/Admin/Car/CarDetail/@item.CarId" class="btn btn-info btn-rounded waves-effect waves-light">
+                                    <i class="mdi mdi-information"></i>  Detaylar
+                                </a>
+
+                                    <a href="/Admin/Car/CarDetail/@item.CarId" class="btn btn-success btn-rounded waves-effect waves-light">
+                                        <i class="mdi mdi-information"></i>  Fiyat Bilgileri
+                                    </a>
+
+                                    <a href="/Admin/Car/CarDetail/@item.CarId" class="btn btn-secondary btn-rounded waves-effect waves-light">
+                                        <i class="fas fa-paper-plane"></i>  Sitede Gör
+                                    </a>
+
+                                <a href="/Admin/Car/UpdateCar/@item.CarId" class="btn btn-warning btn-rounded waves-effect waves-light">
+                                    <i class="mdi mdi-update"></i>  Güncelle
+                                </a>
+
+                                    <a href="/Admin/Car/DeleteCar/@item.CarId" class="btn btn-danger btn-rounded waves-effect waves-light">
+                                    <i class="mdi mdi-delete-forever"></i>  Sil
+                                </a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- end card-body-->
+</div>
+<!-- end card -->
+</div>

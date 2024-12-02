@@ -20,7 +20,7 @@ namespace CarBookProject.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> ListAuthor()
         {
-            var values = await _mediator.Send(new GetTestimonialQuery());
+            var values = await _mediator.Send(new GetAuthorQuery());
             return Ok(values);
         }
         [HttpGet("{id}")]
@@ -41,10 +41,10 @@ namespace CarBookProject.WebApi.Controllers
             await _mediator.Send(command);
             return Ok();
         }
-        [HttpDelete]
-        public async Task<IActionResult> DeleteAuthor(DeleteAuthorCommand command)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAuthor(int id)
         {
-            await _mediator.Send(command);
+            await _mediator.Send(new DeleteAuthorCommand(id));
             return Ok();
         }
     }

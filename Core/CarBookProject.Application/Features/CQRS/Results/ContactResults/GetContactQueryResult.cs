@@ -17,7 +17,9 @@ namespace CarBookProject.Application.Features.CQRS.Results.ContactResults
         public string Subject { get; set; }
         public string Text { get; set; }
         public DateTime SendingDate { get; set; }
+        public string CategoryName { get; set; }
         public int ContactCategoryId { get; set; }
         public bool IsApproved { get; set; }
+  
     }
 }

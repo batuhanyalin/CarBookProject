@@ -1,0 +1,48 @@
+﻿@model FeatureUpdateDto
+@{
+    ViewData["Title"] = "UpdateFeature";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Feature/Index">Özellikler</a></li>
+                    <li class="breadcrumb-item active">Özellik Güncelle</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="Featured-title">Özellik Güncelle</h4>
+                <p class="Featured-subtitle mb-4">Özellik ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak işlemi tamamlayabilirsiniz.</p>
+
+                <form method="post">
+                    <div class="row">
+                        <input type="hidden" asp-for="FeatureId" />
+                        <div class="col col-md-4">
+                            <div class="form-group">
+                                <label>Özellik Adı</label>
+                                <input type="text" class="form-control" asp-for="Name">
+                                <span class="text-danger" asp-validation-for="Name"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning waves-effect waves-light"><i class="mdi mdi-update"></i> Güncelle</button>
+                </form>
+            </div> <!-- end Featured-body-->
+        </div> <!-- end Featured-->
+    </div> <!-- end col -->
+</div>
+<!-- end row-->

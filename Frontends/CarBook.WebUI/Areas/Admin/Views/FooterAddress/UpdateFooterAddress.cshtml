@@ -1,0 +1,65 @@
+﻿@model FooterAddressUpdateDto
+@{
+    ViewData["Title"] = "UpdateFooterAddress";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Dashboard/Index">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">Adres Güncelle</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="FooterAddressd-title">Adres Güncelle</h4>
+                <p class="FooterAddressd-subtitle mb-4">Adres ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak işlemi tamamlayabilirsiniz.</p>
+                <form method="post">
+                    <div class="row">
+                        <input type="hidden" asp-for="FooterAddressId" />
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Adres</label>
+                                <input type="text" class="form-control" asp-for="Address">
+                                <span class="text-danger" asp-validation-for="Address"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefon</label>
+                                <input type="text" class="form-control" asp-for="Phone">
+                                <span class="text-danger" asp-validation-for="Phone"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>E-posta</label>
+                                <input type="text" class="form-control" asp-for="Email">
+                                <span class="text-danger" asp-validation-for="Email"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Açıklama</label>
+                                <textarea class="form-control" rows="15"  asp-for="Description"></textarea>
+                                <span class="text-danger" asp-validation-for="Description"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning waves-effect waves-light"><i class="mdi mdi-update"></i> Güncelle</button>
+                </form>
+            </div> <!-- end FooterAddressd-body-->
+        </div> <!-- end FooterAddressd-->
+    </div> <!-- end col -->
+</div>
+<!-- end row-->

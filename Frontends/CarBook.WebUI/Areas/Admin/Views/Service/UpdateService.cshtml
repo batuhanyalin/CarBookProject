@@ -1,0 +1,58 @@
+﻿@model ServiceUpdateDto
+@{
+    ViewData["Title"] = "UpdateService";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Service/Index">Hizmetler</a></li>
+                    <li class="breadcrumb-item active">Hizmet Güncelle</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="Serviced-title">Hizmet Güncelle</h4>
+                <p class="Serviced-subtitle mb-4">Hizmet ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak işlemi tamamlayabilirsiniz.</p>
+
+                <form method="post">
+                    <div class="row">
+                        <input type="hidden" asp-for="ServiceId" />
+                        <div class="col col-md-4">
+                            <div class="form-group">
+                                <label>Başlık</label>
+                                <input type="text" class="form-control" asp-for="Title">
+                                <span class="text-danger" asp-validation-for="Title"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>İkon</label>
+                                <input type="text" class="form-control" asp-for="Icon">
+                                <span class="text-danger" asp-validation-for="Icon"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Açıklama</label>
+                                <textarea class="form-control" rows="10" asp-for="Text"></textarea>
+                                <span class="text-danger" asp-validation-for="Text"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning waves-effect waves-light"><i class="mdi mdi-update"></i> Güncelle</button>
+                </form>
+            </div> <!-- end Serviced-body-->
+        </div> <!-- end Serviced-->
+    </div> <!-- end col -->
+</div>
+<!-- end row-->

@@ -1,0 +1,63 @@
+﻿@model List<CommentListDto>
+@{
+    ViewData["Title"] = "BlogComment";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Blog/Index">Bloglar</a></li>
+                    <li class="breadcrumb-item active">Bloga Ait Yorumlar</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h4 class="Blogd-title">Yorum Listesi [@Model.Count] - @ViewBag.blogTitle</h4>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <p class="Blogd-subtitle mb-4">
+                        İlgili bloga ait yorumlar listelenmektedir.
+                    </p>
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+                count++;
+                <div class="col-md-4">
+                    <div class="card">
+                        <h5 class="card-header">Yorum: @count</h5>
+                        <div class="card-body">
+                            <h4 class="card-title">@item.Name @item.Surname</h4>
+                            <h6 class="card-text">@item.CreatedDate.ToString("dd.MM.yyy HH:ss")</h6>
+                            <p class="card-text">
+                                @item.Text
+                            </p>
+                            <a href="#" class="btn btn-primary waves-effect waves-light">Yorumu Kaldır</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        
+        </div>
+        <!-- end Blogd-body-->
+    </div>
+    <!-- end Blogd -->
+</div>
+

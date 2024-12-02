@@ -76,10 +76,10 @@ namespace CarBookProject.WebApi.Controllers
             await _updateBlogCommandHandler.Handle(command);
             return Ok();
         }
-        [HttpDelete]
-        public async Task<IActionResult> DeleteBlog(DeleteBlogCommand command)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteBlog(int id)
         {
-            await _deleteBlogCommandHandler.Handle(command);
+            await _deleteBlogCommandHandler.Handle(new DeleteBlogCommand(id));
             return Ok();
         }
     }

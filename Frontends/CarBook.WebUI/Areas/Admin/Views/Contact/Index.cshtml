@@ -1,0 +1,68 @@
+﻿@model List<ContactListDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Dashboard/Index">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">İletişimler</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">İletişim Mesajları</h4>
+                <p class="card-subtitle mb-4">
+                  Mesaj içeriklerini görüntüleyebilmek için mesajın sol kısmındaki + butonuna basınız. Sağ üstteki arama bölümünden ilgili mesajı arayıp sonuçları dinamik olarak listeleyebilirsiniz.
+                </p>
+
+                <table id="basic-datatable" class="table dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Adı</th>
+                            <th>Soyadı</th>
+                            <th>Konu</th>
+                            <th>Kategori</th>
+                            <th>Tarih</th>
+                            <th>Metin</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.Name</td>
+                                <td>@item.Surname</td>
+                                <td>@item.Subject</td>
+                                <td>@item.CategoryName</td>
+                                <td>@item.SendingDate.ToString("dd.MMM.yyy")</td>
+                                <td>@item.Text</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CarBookProject.Application.Features.Mediator.Handlers.TagHandlers
 {
-    public class UpdateTagCommandHandler:IRequestHandler<UpdateTagCommand>
+    public class UpdateTagCommandHandler : IRequestHandler<UpdateTagCommand>
     {
         private readonly IRepository<Tag> _repository;
 
@@ -19,9 +19,11 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.TagHandlers
             _repository = repository;
         }
 
-        public Task Handle(UpdateTagCommand request, CancellationToken cancellationToken)
+        public async Task Handle(UpdateTagCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var value = await _repository.GetByIdAsync(request.TagId);
+            value.TagName = request.TagName;
+            await _repository.UpdateAsync(value);
         }
     }
 }

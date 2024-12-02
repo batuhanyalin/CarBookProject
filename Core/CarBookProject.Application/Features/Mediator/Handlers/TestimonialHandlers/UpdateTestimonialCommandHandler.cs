@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CarBookProject.Application.Features.Mediator.Handlers.TestimonialHandlers
 {
-    public class UpdateTestimonialCommandHandler:IRequestHandler<UpdateTestimonialCommand>
+    public class UpdateTestimonialCommandHandler : IRequestHandler<UpdateTestimonialCommand>
     {
         private readonly IRepository<Testimonial> _repository;
 
@@ -19,9 +19,15 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.TestimonialHandl
             _repository = repository;
         }
 
-        public Task Handle(UpdateTestimonialCommand request, CancellationToken cancellationToken)
+        public async Task Handle(UpdateTestimonialCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var value = await _repository.GetByIdAsync(request.TestimonialId);
+            value.Name = request.Name;
+            value.Surname = request.Surname;
+            value.Text = request.Text;
+            value.Title = request.Title;
+            value.ImageUrl = request.ImageUrl;
+            await _repository.UpdateAsync(value);
         }
     }
 }

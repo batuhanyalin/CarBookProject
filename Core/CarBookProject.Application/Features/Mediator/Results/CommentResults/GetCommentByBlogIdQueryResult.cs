@@ -14,5 +14,6 @@ namespace CarBookProject.Application.Features.Mediator.Results.CommentResults
         public string Text { get; set; }
         public DateTime CreatedDate { get; set; }
         public int BlogId { get; set; }
+        public string BlogTitle { get; set; }
     }
 }

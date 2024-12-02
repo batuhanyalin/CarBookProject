@@ -1,0 +1,122 @@
+﻿@model List<CommentListDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Dashboard/Index">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">Yorumlar</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h4 class="Commentd-title">Yorum Listesi</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <a href="/Admin/Comment/CreateComment" class="btn btn-primary btn-rounded waves-effect waves-light">
+                        <i class="mdi mdi-gamepad-round"></i>  Yeni Yorum Girişi
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <p class="Commentd-subtitle mb-4">
+                        Yorumlerla ilgili ekleme, silme, güncelleme, arama ve listeleme gibi işlemleri bu sayfa güzerinden gerçekleştirebilirsiniz.
+                    </p>
+                </div>
+
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Adı</th>
+                            <th>Soyadı</th>
+                            <th>Metin</th>
+                            <th>Tarih</th>
+                            <th>Blog</th>
+                            <th>Aksiyon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (Model.Count == 0)
+                            {
+                                <div class="alert alert-secondary" role="alert">
+                                    Herhangi bir Yorum bulunamadı.
+                                </div>
+                            }
+                            else
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <th scope="row">@count</th>
+                                        <td>@item.Name</td>
+                                        <td>@item.Surname</td>
+                                        <td>
+                                            @{
+                                                if (item.Text?.Length > 200)
+                                                {
+                                                    @item.Text.Substring(0, 200)
+                                                    ;
+                                                }
+                                                else
+                                                {
+                                                    @item.Text?.ToString()
+                                                    ;
+                                                }
+                                            }...
+                                        </td>
+                                        <td>@item.CreatedDate.ToString("dd.MM.yyy")</td>
+                                        <td>@item.BlogTitle</td>
+                                        <td>
+
+                                            <a href="/Blog/BlogDetail/@item.BlogId" class="btn btn-info btn-rounded waves-effect waves-light">
+                                                <i class="fas fa-paper-plane"></i>  Sitede Gör
+                                            </a>
+
+                                            <a href="/Admin/Comment/UpdateComment/@item.CommentId" class="btn btn-warning btn-rounded waves-effect waves-light">
+                                                <i class="mdi mdi-update"></i>  Güncelle
+                                            </a>
+
+                                            <a href="/Admin/Comment/DeleteComment/@item.CommentId" class="btn btn-danger btn-rounded waves-effect waves-light">
+                                                <i class="mdi mdi-delete-forever"></i>  Sil
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- end Commentd-body-->
+    </div>
+    <!-- end Commentd -->
+</div>

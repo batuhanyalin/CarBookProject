@@ -42,10 +42,10 @@ namespace CarBookProject.WebApi.Controllers
             await _mediator.Send(command);
             return Ok();
         }
-        [HttpDelete]
-        public async Task<IActionResult> DeleteFeature(DeleteFeatureCommand command)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteFeature(int id)
         {
-            await _mediator.Send(command);
+            await _mediator.Send(new DeleteFeatureCommand(id));
             return Ok();
         }
     }

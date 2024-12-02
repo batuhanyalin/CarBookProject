@@ -24,5 +24,10 @@ namespace CarBookProject.Persistence.Repositories.CommentRepositories
             var values = _context.Comments.Where(x => x.BlogId == id).Include(x => x.Blog).ThenInclude(x => x.Author).ToList();
             return values;
         }
+        public List<Comment> GetCommentListWithAllInfo()
+        {
+            var values = _context.Comments.Include(x => x.Blog).ThenInclude(x => x.Author).ToList();
+            return values;
+        }
     }
 }

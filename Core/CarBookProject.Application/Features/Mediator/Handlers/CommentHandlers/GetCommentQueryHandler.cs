@@ -1,6 +1,7 @@
 ﻿using CarBookProject.Application.Features.Mediator.Queries.CommentQueries;
 using CarBookProject.Application.Features.Mediator.Results.CommentResults;
 using CarBookProject.Application.Interfaces;
+using CarBookProject.Application.Interfaces.CommentInterfaces;
 using CarBookProject.Domain.Entities;
 using MediatR;
 using System;
@@ -13,16 +14,16 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.CommentHandlers
 {
     public class GetCommentQueryHandler : IRequestHandler<GetCommentQuery, List<GetCommentQueryResult>>
     {
-        private readonly IRepository<Comment> _repository;
+        private readonly ICommentRepository _repository;
 
-        public GetCommentQueryHandler(IRepository<Comment> repository)
+        public GetCommentQueryHandler(ICommentRepository repository)
         {
             _repository = repository;
         }
 
         public async Task<List<GetCommentQueryResult>> Handle(GetCommentQuery request, CancellationToken cancellationToken)
         {
-            var values = await _repository.GetAllAsync();
+            var values = _repository.GetCommentListWithAllInfo();
             return values.Select(x=>new GetCommentQueryResult
             {
                 BlogId = x.BlogId,
@@ -30,7 +31,8 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.CommentHandlers
                 CreatedDate=x.CreatedDate,
                 Name = x.Name,
                 Surname = x.Surname,
-                Text=x.Text
+                Text=x.Text,
+                BlogTitle=x.Blog.Title,
             }).ToList();
         }
     }

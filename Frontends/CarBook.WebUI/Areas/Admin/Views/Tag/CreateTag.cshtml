@@ -1,0 +1,45 @@
+﻿@model TagCreateDto
+@{
+    ViewData["Title"] = "CreateTag";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Tag/Index">Etiketler</a></li>
+                    <li class="breadcrumb-item active">Yeni Etiket Girişi</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="Tagd-title">Yeni Etiket Girişi</h4>
+                <p class="Tagd-subtitle mb-4">Etiket ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak işlemi tamamlayabilirsiniz.</p>
+                <form method="post">
+                    <div class="row">
+                        <div class="col col-md-4">
+                            <div class="form-group">
+                                <label>Etiket Adı</label>
+                                <input type="text" class="form-control" asp-for="TagName">
+                                <span class="text-danger" asp-validation-for="TagName"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light"><i class="mdi mdi-content-save-all"></i> Kaydet</button>
+                </form>
+            </div> <!-- end Tagd-body-->
+        </div> <!-- end Tagd-->
+    </div> <!-- end col -->
+</div>
+<!-- end row-->

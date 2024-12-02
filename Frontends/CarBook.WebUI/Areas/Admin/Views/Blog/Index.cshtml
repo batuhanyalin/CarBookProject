@@ -1,0 +1,115 @@
+﻿@model List<BlogListDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Dashboard/Index">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">Bloglar</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h4 class="Blogd-title">Blog Listesi</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <a href="/Admin/Blog/CreateBlog" class="btn btn-primary btn-rounded waves-effect waves-light">
+                        <i class="mdi mdi-gamepad-round"></i>  Yeni Blog Girişi
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <p class="Blogd-subtitle mb-4">
+                        Bloglarla ilgili ekleme, silme, güncelleme, arama ve listeleme gibi işlemleri bu sayfa güzerinden gerçekleştirebilirsiniz.
+                    </p>
+                </div>
+
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Görsel</th>
+                            <th>Başlık</th>
+                            <th>Yazar</th>
+                            <th>Kategori</th>
+                            <th>Tarih</th>
+                            <th>Yorum Sayısı</th>
+                            <th>Aksiyon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (Model.Count == 0)
+                            {
+                                <div class="alert alert-secondary" role="alert">
+                                    Herhangi bir Blog bulunamadı.
+                                </div>
+                            }
+                            else
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <th scope="row">@count</th>
+                                        <td><img src="@item.CoverImageUrl" height="70" width="100" /></td>
+                                        <td>@item.Title</td>
+                                        <td>@item.AuthorName</td>
+                                        <td>@item.CategoryName</td>
+                                        <td>@item.CreatedDate.ToString("dd.MM.yyy")</td>
+                                        <td>@item.CommentCount</td>
+                                        <td>
+
+                                            <a href="/Admin/Blog/BlogComment/@item.BlogId" class="btn btn-secondary btn-rounded waves-effect waves-light">
+                                                <i class="fas fa-comments"></i>  Yorumlar
+                                            </a>
+
+                                            <a href="/Blog/BlogDetail/@item.BlogId" class="btn btn-info btn-rounded waves-effect waves-light">
+                                                <i class="fas fa-paper-plane"></i>  Sitede Gör
+                                            </a>
+
+                                            <a href="/Admin/Blog/UpdateBlog/@item.BlogId" class="btn btn-warning btn-rounded waves-effect waves-light">
+                                                <i class="mdi mdi-update"></i>  Güncelle
+                                            </a>
+
+                                            <a href="/Admin/Blog/DeleteBlog/@item.BlogId" class="btn btn-danger btn-rounded waves-effect waves-light">
+                                                <i class="mdi mdi-delete-forever"></i>  Sil
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- end Blogd-body-->
+    </div>
+    <!-- end Blogd -->
+</div>

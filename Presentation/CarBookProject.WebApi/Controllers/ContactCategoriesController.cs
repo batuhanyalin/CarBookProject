@@ -40,10 +40,10 @@ namespace CarBookProject.WebApi.Controllers
             await _mediator.Send(command);
             return Ok();
         }
-        [HttpDelete]
-        public async Task<IActionResult> DeleteContactCategory(DeleteContactCategoryCommand command)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteContactCategory(int id)
         {
-            await _mediator.Send(command);
+            await _mediator.Send(new DeleteContactCategoryCommand(id));
             return Ok();
         }
     }

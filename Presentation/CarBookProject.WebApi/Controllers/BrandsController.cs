@@ -48,7 +48,7 @@ namespace BrandBookProject.WebApi.Controllers
             await _updateBrandCommandHandler.Handle(command);
             return Ok();
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBrand(int id)
         {
             await _deleteBrandCommandHandler.Handle(new DeleteBrandCommand(id));

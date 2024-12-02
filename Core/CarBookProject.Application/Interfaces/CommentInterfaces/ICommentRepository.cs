@@ -10,5 +10,6 @@ namespace CarBookProject.Application.Interfaces.CommentInterfaces
     public interface ICommentRepository
     {
         public List<Comment> GetCommentListByBlogId(int id);
+        public List<Comment> GetCommentListWithAllInfo();
     }
 }

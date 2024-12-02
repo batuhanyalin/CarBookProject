@@ -30,7 +30,8 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.CommentHandlers
                 CreatedDate = x.CreatedDate,
                 Name = x.Name,
                 Surname = x.Surname,
-                Text = x.Text
+                Text = x.Text,
+                BlogTitle=x.Blog.Title,
             }).ToList();
             return Task.FromResult(result); // #NOT: Task sarmalama 
         }
