@@ -11,6 +11,7 @@ using CarBookProject.Application.Interfaces.CarInterfaces;
 using CarBookProject.Application.Interfaces.CommentInterfaces;
 using CarBookProject.Application.Interfaces.ContactInterfaces;
 using CarBookProject.Application.Interfaces.ICarPricingInterfaces;
+using CarBookProject.Application.Interfaces.StatisticInterfaces;
 using CarBookProject.Application.Interfaces.TagBlogInterfaces;
 using CarBookProject.Application.Services;
 using CarBookProject.Persistence.Context;
@@ -20,6 +21,7 @@ using CarBookProject.Persistence.Repositories.CarPricingRepositories;
 using CarBookProject.Persistence.Repositories.CarRepositories;
 using CarBookProject.Persistence.Repositories.CommentRepositories;
 using CarBookProject.Persistence.Repositories.ContactRepositories;
+using CarBookProject.Persistence.Repositories.StatisticRepositories;
 using CarBookProject.Persistence.Repositories.TagBlogRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +35,7 @@ builder.Services.AddScoped(typeof(ICarPricingRepository), typeof(CarPricingRepos
 builder.Services.AddScoped(typeof(ICommentRepository), typeof(CommentRepository));
 builder.Services.AddScoped(typeof(ITagBlogRepository), typeof(TagBlogRepository));
 builder.Services.AddScoped(typeof(IContactRepository), typeof(ContactRepository));
+builder.Services.AddScoped(typeof(IStatisticRepository), typeof(StatisticRepository));
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
 builder.Services.AddScoped<CreateAboutCommandHandler>();

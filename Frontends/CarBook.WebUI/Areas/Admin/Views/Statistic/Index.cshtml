@@ -1,0 +1,369 @@
+﻿@model StatisticDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Dashboard/Index">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">İstatistikler</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title1 -->
+<div class="row">
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-primary border-primary">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Aktif Araçlar</span>
+                    <h5 class="card-title mb-0 text-white">Toplam Araç Sayısı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center mb-0 text-white">
+                            @Model.carCount Araç
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"> <i style="font-size:larger" class="fas fa-car-side"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-success border-success">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Mevcut Lokasyonlar</span>
+                    <h5 class="card-title mb-0 text-white">Kiralama Lokasyon Sayısı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.locationCount Lokasyon
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"> <i style="font-size:larger" class="fas fa-map-marked-alt"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-warning border-warning">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Aktif Yazarlar</span>
+                    <h5 class="card-title mb-0 text-white">Toplam Yazar Sayısı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.authorCount Yazar
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"> <i style="font-size:larger" class="mdi mdi-pen"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-info border-info">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Blog+</span>
+                    <h5 class="card-title mb-0 text-white">Toplam Blog Sayısı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.blogCount Blog
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"> <i style="font-size:larger" class="mdi mdi-blogger"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+</div>
+<!-- end row -->
+<!-- end page title2 -->
+<div class="row">
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-primary border-primary">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Mevcut Markalar</span>
+                    <h5 class="card-title mb-0 text-white">Toplam Marka Sayısı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.brandCount Marka
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"> <i style="font-size:larger" class="fas fa-business-time"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-success border-success">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">10.000 Kilometreden Düşük Araçlar</span>
+                    <h5 class="card-title mb-0 text-white">Toplam Araç</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.getCarCountByKmSmallerThen10000 Araç
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"><i style="font-size:larger" class="mdi mdi-speedometer"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-warning border-warning">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Dizel & Benzinli</span>
+                    <h5 class="card-title mb-0 text-white">Toplam Araç Sayısı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.getCarCountByFuelGasolineOrDiesel Araç
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"><i style="font-size:larger" class="fas fa-gas-pump"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-info border-info">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Elektrikli</span>
+                    <h5 class="card-title mb-0 text-white">Toplam Araç Sayısı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.getCarCountByFuelElectric Araç
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"><i style="font-size:larger" class="mdi mdi-atom"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+</div>
+<!-- end row -->
+<!-- end page title3 -->
+<div class="row">
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-primary border-primary">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Otomatik Vites</span>
+                    <h5 class="card-title mb-0 text-white">Toplam Araç Sayısı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center mb-0 text-white">
+                            @Model.getCarCountByTransmissionAuto Araç
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"><i style="font-size:larger" class="fas fa-cogs"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-success border-success">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Günlük</span>
+                    <h5 class="card-title mb-0 text-white">Ortalama Araç Fiyatı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.getAvgRentPriceForDaily.ToString("0.00") ₺
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"><i style="font-size:medium" class="fas fa-money-bill-wave"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-warning border-warning">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Haftalık</span>
+                    <h5 class="card-title mb-0 text-white">Ortalama Araç Fiyatı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.getAvgRentPriceForWeekly.ToString("0.00") ₺
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"><i style="font-size:larger" class="fas fa-money-bill-wave"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-info border-info">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Aylık</span>
+                    <h5 class="card-title mb-0 text-white">Ortalama Araç Fiyatı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.getAvgRentPriceForMonthly.ToString("0.00") ₺
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"><i style="font-size:larger" class="fas fa-money-bill-wave"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+</div>
+<!-- end row -->
+<!-- end page title4 -->
+<div class="row">
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-primary border-primary">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">En Fazla Araçlı Marka</span>
+                    <h5 class="card-title mb-0 text-white">Marka Adı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center mb-0 text-white">
+                            @Model.GetBrandNameByMaxCar
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"><i style="font-size:larger" class="mdi mdi-arrow-up"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-success border-success">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">En Fazla Yorumlu Blog</span>
+                    <h5 class="card-title mb-0 text-white">En Popüler Blog</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                           @Model.GetMostHaveCommentBlog
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"><i style="font-size:larger" class="fas fa-star"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-warning border-warning">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Günlük Kiralama Fiyatı</span>
+                    <h5 class="card-title mb-0 text-white">En Pahalı Araç</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.GetCarBrandAndModelByMostExpensiveRentPriceDaily
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"><i style="font-size:larger" class="mdi mdi-arrow-up-bold-box"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-info border-info">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Günlük Kiralama Fiyatı</span>
+                    <h5 class="card-title mb-0 text-white">En Ucuz Araç</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.GetCarBrandAndModelByCheapestRentPriceDaily
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"><i style="font-size:larger" class="mdi mdi-arrow-down-bold-box"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+</div>
+<!-- end row -->
