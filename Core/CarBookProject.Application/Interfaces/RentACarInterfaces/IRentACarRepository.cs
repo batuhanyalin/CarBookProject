@@ -10,6 +10,6 @@ namespace CarBookProject.Application.Interfaces.RentACarInterfaces
 {
     public interface IRentACarRepository
     {
-        List<RentACar> GetByFilterAsync(Expression<Func<RentACar, bool>> filter); //bool= geriye dönecek olan durumu belirtecek, filter= gönderilecek olan şart.
+        Task<List<RentACar>> GetByFilterAsync(Expression<Func<RentACar, bool>> filter); //bool= geriye dönecek olan durumu belirtecek, filter= gönderilecek olan şart.
     }
 }
