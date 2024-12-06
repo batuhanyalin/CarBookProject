@@ -37,5 +37,21 @@ namespace CarBookProject.Persistence.Context
         public DbSet<Tag> Tags { get; set; }
         public DbSet<TagBlog> TagBlogs { get; set; }
         public DbSet<RentACar> RentACars { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        //OnModelCreating
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Reservation>()
+                  .HasOne(x => x.PickUpLocation)
+                 .WithMany(y => y.PickUpReservation)
+                   .HasForeignKey(m => m.PickUpLocationId)
+                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<Reservation>()
+                .HasOne(x => x.DropOffLocation)
+               .WithMany(y => y.DropOffReservation)
+                 .HasForeignKey(m => m.DropOffLocationId)
+               .OnDelete(DeleteBehavior.ClientSetNull);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CarBookProject.Dto.BlogDtos;
+﻿using CarBookProject.Dto.AuthorDtos;
+using CarBookProject.Dto.BlogDtos;
 using CarBookProject.Dto.TagDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -22,7 +23,7 @@ namespace CarBook.WebUI.Controllers
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var value = JsonConvert.DeserializeObject<List<BlogListDto>>(jsonData);
-                return View(value);
+                return View(value); 
             }
             return View();
         }
@@ -46,6 +47,25 @@ namespace CarBook.WebUI.Controllers
                 var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
                 var value2 = JsonConvert.DeserializeObject<TagListDto>(jsonData2);
                 ViewBag.tagName = value2.TagName;
+                return View(value);
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> BlogListForAuthorId(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:7286/api/Authors/GetBlogListByAuthorId/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var value = JsonConvert.DeserializeObject<List<BlogListDto>>(jsonData);
+
+                var responseMessage2 = await client.GetAsync($"https://localhost:7286/api/Authors/{id}");
+                var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
+                var value2 = JsonConvert.DeserializeObject<AuthorListDto>(jsonData2);
+                ViewBag.authorName = $"{value2.Name}+ +{value2.Surname}";
                 return View(value);
             }
             return View();

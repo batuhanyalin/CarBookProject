@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CarBookProject.Application.Features.Mediator.Handlers.RentACarHandlers
 {
@@ -21,10 +22,20 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.RentACarHandlers
 
         public async Task<List<GetRentACarQueryResult>> Handle(GetRentACarQuery request, CancellationToken cancellationToken)
         {
-            var values = await _repository.GetByFilterAsync(x => x.LocationId == request.LocationId && x.Available == true);
+            var values = await _repository.GetByFilterAsync(x => x.LocationId == request.LocationId && x.Available == request.Available);
             var results = values.Select(x => new GetRentACarQueryResult
             {
                 CarId = x.CarId,
+                BigImageUrl=x.Car.BigImageUrl,
+                BrandId = x.Car.BrandId,
+                BrandName=x.Car.Brand.Name,
+                CoverImageUrl=x.Car.CoverImageUrl,
+                Fuel = x.Car.Fuel,
+                Km= x.Car.Km,
+                Luggage= x.Car.Luggage,
+                Model=x.Car.Model,
+                Seat = x.Car.Seat,
+                Transmission = x.Car.Transmission,
             }).ToList();
             return results;
         }

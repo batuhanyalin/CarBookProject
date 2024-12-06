@@ -28,6 +28,12 @@ namespace CarBookProject.WebApi.Controllers
         {
             var value = await _mediator.Send(new GetAuthorByIdQuery(id));
             return Ok(value);
+        }      
+        [HttpGet("GetBlogListByAuthorId/{id:int}")]
+        public async Task<IActionResult> GetBlogListByAuthorId(int id)
+        {
+            var value = await _mediator.Send(new GetBlogListByAuthorIdQuery(id));
+            return Ok(value);
         }
         [HttpPost]
         public async Task<IActionResult> CreateAuthor(CreateAuthorCommand command)
