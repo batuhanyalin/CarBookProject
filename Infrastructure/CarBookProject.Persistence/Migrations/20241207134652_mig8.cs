@@ -31,6 +31,12 @@ namespace CarBookProject.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Reservations", x => x.ReservationId);
                     table.ForeignKey(
+                        name: "FK_Reservations_Cars_CarId",
+                        column: x => x.CarId,
+                        principalTable: "Cars",
+                        principalColumn: "CarId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Reservations_Locations_DropOffLocationId",
                         column: x => x.DropOffLocationId,
                         principalTable: "Locations",
@@ -41,6 +47,11 @@ namespace CarBookProject.Persistence.Migrations
                         principalTable: "Locations",
                         principalColumn: "LocationId");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservations_CarId",
+                table: "Reservations",
+                column: "CarId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_DropOffLocationId",

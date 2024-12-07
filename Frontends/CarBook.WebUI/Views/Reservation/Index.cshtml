@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ReservationCreateDto
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_UILayout.cshtml";
 }
@@ -18,39 +19,51 @@
     <div class="container">
         <div class="row d-flex mb-5 contact-info">        
             <div class="col-md-12 block-9 mb-md-5">
-                <form action="#" class="bg-light p-5 contact-form">
-                    <div class="form-group">
-                        <label class="form-label">Almak İstediğiniz Araba</label>
-                        <input type="text" class="form-control">
+                <form method="post" class="bg-light p-5 contact-form">
+                    <input type="hidden" asp-for="CarId" />
+                    <div style="text-align:center" class="form-group">
+                        <h3 class="form-label">Kiralamak İstediğiniz Araba</h3>
+                      <br />
+                      <img height="300" width="480" src="@ViewBag.carImage" />
+                      <br />
+                      <h5>@ViewBag.car</h5>
+
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Ad">
+                        <label class="form-label">Ad</label>
+                        <input type="text" asp-for="Name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Soyad">
+                        <label class="form-label">Soyad</label>
+                        <input type="text" asp-for="Surname" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Yaş">
+                        <label class="form-label">Yaş</label>
+                        <input type="number" asp-for=Age class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Ehliyet Yılınız">
+                        <label class="form-label">Ehliyet Yılınız</label>
+                        <input type="number" asp-for=DriverLicenseYear class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Mail">
+                        <label class="form-label">E-posta</label>
+                        <input type="email" asp-for="Email" class="form-control">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Telefon">
+                        <label class="form-label">Telefon</label>
+                        <input type="text" asp-for="Phone" class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="form-label">Almak İstediğiniz Lokasyon</label>
-                        <input type="text" class="form-control">
+                        <select class="form-control" asp-for="PickUpLocationId" asp-items="@ViewBag.pickUpLocation"></select>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Teslim Etmek İstediğiniz Lokasyon</label>
-                        <input type="text" class="form-control">
+                        <label class="form-label">Almak İstediğiniz Lokasyon</label>
+                        <select class="form-control" asp-for="DropOffLocationId" asp-items="@ViewBag.dropOffLocation"></select>
                     </div>
                     <div class="form-group">
-                        <textarea cols="30" rows="7" class="form-control" placeholder="Vrsa eklemek istedikleriniz"></textarea>
+                        <label class="form-label">Ek Bilgi (Zorunlu Değil)</label>
+                        <textarea cols="30" rows="7" asp-for="Description" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
                         <span><input type="checkbox" required /> <a href="">Kullanım koşulları</a> ve <a href="">Gizlilik Politikaları</a>nı okudum, anladım ve onaylıyorum.</span>

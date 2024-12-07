@@ -19,10 +19,6 @@ namespace CarBook.WebUI.Controllers
         {
             return View();
         }
-        public IActionResult ThisCar(int id)
-        {
-            return View();
-        }
         public async Task<IActionResult> List(FilterRentACarDto dto)
         {
             var client = _httpClientFactory.CreateClient();

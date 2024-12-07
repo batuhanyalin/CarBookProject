@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarBookProject.Persistence.Migrations
 {
     [DbContext(typeof(CarBookContext))]
-    [Migration("20241206133243_mig8")]
+    [Migration("20241207134652_mig8")]
     partial class mig8
     {
         /// <inheritdoc />
@@ -630,6 +630,8 @@ namespace CarBookProject.Persistence.Migrations
 
                     b.HasKey("ReservationId");
 
+                    b.HasIndex("CarId");
+
                     b.HasIndex("DropOffLocationId");
 
                     b.HasIndex("PickUpLocationId");
@@ -901,6 +903,12 @@ namespace CarBookProject.Persistence.Migrations
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.Reservation", b =>
                 {
+                    b.HasOne("CarBookProject.Domain.Entities.Car", "Car")
+                        .WithMany("Reservations")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("CarBookProject.Domain.Entities.Location", "DropOffLocation")
                         .WithMany("DropOffReservation")
                         .HasForeignKey("DropOffLocationId");
@@ -908,6 +916,8 @@ namespace CarBookProject.Persistence.Migrations
                     b.HasOne("CarBookProject.Domain.Entities.Location", "PickUpLocation")
                         .WithMany("PickUpReservation")
                         .HasForeignKey("PickUpLocationId");
+
+                    b.Navigation("Car");
 
                     b.Navigation("DropOffLocation");
 
@@ -961,6 +971,8 @@ namespace CarBookProject.Persistence.Migrations
                     b.Navigation("RentACarProcesses");
 
                     b.Navigation("RentACars");
+
+                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.Category", b =>
