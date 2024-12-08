@@ -22,5 +22,7 @@ namespace CarBookProject.Domain.Entities
         public string? Description { get; set; }
         public Location PickUpLocation { get; set; }
         public Location DropOffLocation { get; set; }
+        public int ReservationStatusId { get; set; }
+        public ReservationStatus ReservationStatus { get; set; }
     }
 }

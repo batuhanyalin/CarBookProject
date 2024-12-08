@@ -41,6 +41,9 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.ReservationHandl
                 ModelName=x.Car.Model,
                 PicUpLocationName=x.PickUpLocation.Name,
                 DropOffLocationName=x.DropOffLocation.Name,
+                ReservationStatusId=x.ReservationStatusId,
+                ReservationStatusName  = x.ReservationStatus.Name,
+                 ReservationStatusIcon = x.ReservationStatus.Icon,
             }).ToList();
         }
     }

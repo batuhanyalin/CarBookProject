@@ -18,5 +18,6 @@ namespace CarBookProject.Dto.ReservationDtos
         public int Age { get; set; }
         public int DriverLicenseYear { get; set; }
         public string? Description { get; set; }
+        public int ReservationStatusId { get; set; }
     }
 }

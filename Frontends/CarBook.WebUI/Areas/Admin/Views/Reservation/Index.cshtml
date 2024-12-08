@@ -1,0 +1,153 @@
+﻿@model List<ReservationListDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Dashboard/Index">Anasayfa</a></li>
+                    <li class="breadcrumb-item active">Rezervasyonlar</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <h4 class="Reservationd-title">Rezervasyon Listesi</h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <a href="/Admin/Reservation/CreateReservation" class="btn btn-primary btn-rounded waves-effect waves-light">
+                        <i class="mdi mdi-gamepad-round"></i>  Yeni Rezervasyon Girişi
+                    </a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <p class="Reservationd-subtitle mb-4">
+                        Rezervasyonlarla ilgili ekleme, silme, güncelleme, arama ve listeleme gibi işlemleri bu sayfa güzerinden gerçekleştirebilirsiniz.
+                    </p>
+                </div>
+
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ad</th>
+                            <th>Soyad</th>
+                            <th>Yaş</th>
+                            <th>Ehliyet</th>
+                            <th>E-posta</th>
+                            <th>Telefon</th>
+                            <th>Araç</th>
+                            <th>Alış Konum</th>
+                            <th>İade Konum</th>
+                            <th>Açıklama</th>
+                            <th>Durum</th>
+                            <th>Aksiyon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (Model.Count == 0)
+                            {
+                                <div class="alert alert-secondary" role="alert">
+                                    Herhangi bir Rezervasyon bulunamadı.
+                                </div>
+                            }
+                            else
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <th scope="row">@count</th>
+                                        <td>@item.name</td>
+                                        <td>@item.surname</td>
+                                        <td>@item.age</td>
+                                        <td>@item.driverLicenseYear</td>
+                                        <td>@item.email</td>
+                                        <td>@item.phone</td>
+                                        <td><a href="/Admin/Car/UpdateCar/@item.carId">@item.brandName - @item.modelName</a></td>
+                                        <td>@item.picUpLocationName</td>
+                                        <td>@item.dropOffLocationName</td>
+                                        <td>
+                                            @{
+                                                if (item.description?.Length > 50)
+                                                {
+                                                    @item.description.Substring(0, 50)
+                                                    ;
+                                                }
+                                                else
+                                                {
+                                                    @item.description?.ToString()
+                                                    ;
+                                                }
+                                            }
+                                        </td>
+                                        <td>
+                                            @{
+                                                if (item.reservationStatusId == 1)
+                                                {
+                                                    <i style="font-size:medium" class="text-success @item.ReservationStatusIcon"></i> @item.reservationStatusName
+                                                }
+                                                else if (item.reservationStatusId == 2)
+                                                {
+                                                    <i style="font-size:medium" class="text-dark @item.ReservationStatusIcon"></i> @item.reservationStatusName
+                                                }
+                                                else if (item.reservationStatusId == 3)
+                                                {
+                                                    <i style="font-size:medium" class="text-warning @item.ReservationStatusIcon"></i> @item.reservationStatusName
+                                                }                                            
+                                                else if (item.reservationStatusId == 4)
+                                                {
+                                                    <i style="font-size:medium" class="text-danger @item.ReservationStatusIcon"></i> @item.reservationStatusName
+                                                }                                            
+                                                else if (item.reservationStatusId == 5)
+                                                {
+                                                    <i style="font-size:medium" class="text-info @item.ReservationStatusIcon"></i> @item.reservationStatusName
+                                                }
+                                            }
+                                        </td>
+                                        <td>
+
+                                            <a href="/Admin/Reservation/UpdateReservation/@item.reservationId" class="btn btn-warning btn-rounded waves-effect waves-light">
+                                                <i class="mdi mdi-update"></i>  Güncelle
+                                            </a>
+
+                                            <a href="/Admin/Reservation/DeleteReservation/@item.reservationId" class="btn btn-danger btn-rounded waves-effect waves-light">
+                                                <i class="mdi mdi-delete-forever"></i>  Sil
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- end Reservationd-body-->
+    </div>
+    <!-- end Reservationd -->
+</div>

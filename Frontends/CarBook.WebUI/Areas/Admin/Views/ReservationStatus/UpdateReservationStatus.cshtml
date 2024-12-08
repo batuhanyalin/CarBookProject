@@ -1,0 +1,53 @@
+﻿@model ReservationStatusUpdateDto
+@{
+    ViewData["Title"] = "UpdateReservationStatus";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/ReservationStatus/Index">Rezervasyon Durumları</a></li>
+                    <li class="breadcrumb-item active">Rezervasyon Durum Güncelle</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-xl-8">
+        <div class="ReservationStatusd">
+            <div class="ReservationStatusd-body">
+
+                <h4 class="ReservationStatusd-title">Rezervasyon Durum Güncelle</h4>
+                <p class="ReservationStatusd-subtitle mb-4">Rezervasyon Durum ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak işlemi tamamlayabilirsiniz.</p>
+
+                <form method="post">
+                    <div class="row">
+                        <input type="hidden" asp-for="ReservationStatusId" />
+                        <div class="col col-md-4">
+                            <div class="form-group">
+                                <label>Rezervasyon Durum Adı</label>
+                                <input type="text" class="form-control" asp-for="Name">
+                                <span class="text-danger" asp-validation-for="Name"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>İkon</label>
+                                <input type="text" class="form-control" asp-for="Icon">
+                                <span class="text-danger" asp-validation-for="Icon"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-warning waves-effect waves-light"><i class="mdi mdi-update"></i> Güncelle</button>
+                </form>
+            </div> <!-- end ReservationStatusd-body-->
+        </div> <!-- end ReservationStatusd-->
+    </div> <!-- end col -->
+</div>
+<!-- end row-->

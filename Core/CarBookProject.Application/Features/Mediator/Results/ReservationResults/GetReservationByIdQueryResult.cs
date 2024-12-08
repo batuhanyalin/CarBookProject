@@ -23,5 +23,8 @@ namespace CarBookProject.Application.Features.Mediator.Results.ReservationResult
         public int Age { get; set; }
         public int DriverLicenseYear { get; set; }
         public string? Description { get; set; }
+        public int ReservationStatusId { get; set; }
+        public string ReservationStatusName { get; set; }
+        public string ReservationStatusIcon { get; set; }
     }
 }

@@ -1,0 +1,107 @@
+﻿@model ReservationUpdateDto
+@{
+    ViewData["Title"] = "UpdateReservation";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Admin/Reservation/Index">Rezervasyonlar</a></li>
+                    <li class="breadcrumb-item active">Rezervasyon Güncelle</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="Reservationd-title">Rezervasyon Güncelle</h4>
+                <p class="Reservationd-subtitle mb-4">Rezervasyon ile ilgili temel bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak işlemi tamamlayabilirsiniz.</p>
+
+                <form method="post">
+                    <div class="row">
+                        <input type="hidden" asp-for="reservationId" />
+                        <div class="col col-md-2">
+                            <div class="form-group">
+                                <label>Adı</label>
+                                <input type="text" class="form-control" asp-for="name">
+                                <span class="text-danger" asp-validation-for="name"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Soyadı</label>
+                                <input type="text" class="form-control" asp-for="surname">
+                                <span class="text-danger" asp-validation-for="surname"></span>
+                            </div>                      
+                        </div>
+                        <div class="col col-md-2">
+                            <div class="form-group">
+                                <label>Yaş</label>
+                                <input type="number" class="form-control" asp-for="age">
+                                <span class="text-danger" asp-validation-for="age"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Ehliyet Yılı</label>
+                                <input type="number" class="form-control" asp-for="driverLicenseYear">
+                                <span class="text-danger" asp-validation-for="driverLicenseYear"></span>
+                            </div>
+                        </div>
+                        <div class="col col-md-2">
+                            <div class="form-group">
+                                <label>Telefon</label>
+                                <input type="text" class="form-control" asp-for="phone">
+                                <span class="text-danger" asp-validation-for="phone"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>E-posta</label>
+                                <input type="email" class="form-control" asp-for="email">
+                                <span class="text-danger" asp-validation-for="email"></span>
+                            </div>
+
+                        </div>
+                        <div class="col col-md-3">
+                            <div class="form-group">
+                                <label>Alış Konumu</label>
+                                <select class="form-control" asp-for="pickUpLocationId" asp-items="@ViewBag.LocationList"></select>
+                            </div>
+                            <div class="form-group">
+                                <label>İade Konumu</label>
+                                <select class="form-control" asp-for="dropOffLocationId" asp-items="@ViewBag.LocationList"></select>
+                            </div>
+                        </div>
+                        <div class="col col-md-3">
+                            <div class="form-group">
+                                <label>Araç</label>
+                                <select class="form-control" asp-for="carId" asp-items="@ViewBag.CarList"></select>
+                            </div>
+                            <div class="form-group">
+                                <label>Rezervasyon Durumu</label>
+                                <select class="form-control" asp-for="reservationStatusId" asp-items="@ViewBag.ReservationStatusList"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Açıklama</label>
+                                <textarea class="form-control" rows="5" asp-for="description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning waves-effect waves-light"><i class="mdi mdi-update"></i> Güncelle</button>
+                </form>
+            </div> <!-- end Reservationd-body-->
+        </div> <!-- end Reservationd-->
+    </div> <!-- end col -->
+</div>
+<!-- end row-->

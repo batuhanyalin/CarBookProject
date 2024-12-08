@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarBookProject.Application.Features.Mediator.Queries.ReservationQueries
 {
-    public class GetReservationByIdQuery:IRequest<GetReservationQueryResult>
+    public class GetReservationByIdQuery:IRequest<GetReservationByIdQueryResult>
     {
         public int Id { get; set; }
 

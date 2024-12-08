@@ -33,6 +33,7 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.ReservationHandl
                 Phone = request.Phone,
                 PickUpLocationId = request.PickUpLocationId,
                 Surname = request.Surname,
+                ReservationStatusId = 3
             });
         }
     }

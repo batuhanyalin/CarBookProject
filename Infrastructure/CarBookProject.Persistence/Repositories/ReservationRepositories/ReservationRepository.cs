@@ -21,7 +21,12 @@ namespace CarBookProject.Persistence.Repositories.ReservationRepositories
 
         public List<Reservation> GetReservationListWithAllInfo()
         {
-            var values = _context.Reservations.Include(x => x.Car).ThenInclude(x=>x.Brand).Include(x => x.PickUpLocation).Include(x => x.DropOffLocation).ToList();
+            var values = _context.Reservations.Include(x => x.Car).ThenInclude(x => x.Brand).Include(x => x.PickUpLocation).Include(x => x.DropOffLocation).Include(x=>x.ReservationStatus).ToList();
+            return values;
+        }
+        public Reservation GetReservationById(int id)
+        {
+            var values = _context.Reservations.Where(x => x.ReservationId == id).Include(x=>x.ReservationStatus).Include(x => x.Car).ThenInclude(x => x.Brand).Include(x => x.PickUpLocation).Include(x => x.DropOffLocation).FirstOrDefault();
             return values;
         }
     }

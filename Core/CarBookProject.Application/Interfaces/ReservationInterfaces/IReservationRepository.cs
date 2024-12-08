@@ -10,5 +10,6 @@ namespace CarBookProject.Application.Interfaces.ReservationInterfaces
     public interface IReservationRepository
     {
         public List<Reservation> GetReservationListWithAllInfo();
+        public Reservation GetReservationById(int id);
     }
 }

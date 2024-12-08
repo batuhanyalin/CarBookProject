@@ -621,6 +621,9 @@ namespace CarBookProject.Persistence.Migrations
                     b.Property<int?>("PickUpLocationId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ReservationStatusId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -633,7 +636,30 @@ namespace CarBookProject.Persistence.Migrations
 
                     b.HasIndex("PickUpLocationId");
 
+                    b.HasIndex("ReservationStatusId");
+
                     b.ToTable("Reservations");
+                });
+
+            modelBuilder.Entity("CarBookProject.Domain.Entities.ReservationStatus", b =>
+                {
+                    b.Property<int>("ReservationStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservationStatusId"));
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ReservationStatusId");
+
+                    b.ToTable("ReservationStatuses");
                 });
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.Service", b =>
@@ -914,11 +940,19 @@ namespace CarBookProject.Persistence.Migrations
                         .WithMany("PickUpReservation")
                         .HasForeignKey("PickUpLocationId");
 
+                    b.HasOne("CarBookProject.Domain.Entities.ReservationStatus", "ReservationStatus")
+                        .WithMany("Reservations")
+                        .HasForeignKey("ReservationStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Car");
 
                     b.Navigation("DropOffLocation");
 
                     b.Navigation("PickUpLocation");
+
+                    b.Navigation("ReservationStatus");
                 });
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.TagBlog", b =>
@@ -1004,6 +1038,11 @@ namespace CarBookProject.Persistence.Migrations
             modelBuilder.Entity("CarBookProject.Domain.Entities.Pricing", b =>
                 {
                     b.Navigation("CarPricings");
+                });
+
+            modelBuilder.Entity("CarBookProject.Domain.Entities.ReservationStatus", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.Tag", b =>

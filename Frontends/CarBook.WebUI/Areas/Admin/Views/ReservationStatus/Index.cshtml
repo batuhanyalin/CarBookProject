@@ -1,4 +1,4 @@
-﻿@model List<SocialMediaListDto>
+﻿@model List<ReservationStatusListDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -12,7 +12,7 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="/Admin/Dashboard/Index">Anasayfa</a></li>
-                    <li class="breadcrumb-item active">Sosyal Medyalar</li>
+                    <li class="breadcrumb-item active">Rezervasyon Durumlar</li>
                 </ol>
             </div>
 
@@ -26,22 +26,22 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h4 class="SocialMediad-title">Sosyal Medya Listesi</h4>
+                    <h4 class="ReservationStatusd-title">Rezervasyon Durum Listesi</h4>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <a href="/Admin/SocialMedia/CreateSocialMedia" class="btn btn-primary btn-rounded waves-effect waves-light">
-                        <i class="mdi mdi-gamepad-round"></i>  Yeni Sosyal Medya Girişi
+                    <a href="/Admin/ReservationStatus/CreateReservationStatus" class="btn btn-primary btn-rounded waves-effect waves-light">
+                        <i class="mdi mdi-gamepad-round"></i>  Yeni Rezervasyon Durum Girişi
                     </a>
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col">
-                    <p class="SocialMediad-subtitle mb-4">
-                        Sosyal Medyalarla ilgili ekleme, silme, güncelleme, arama ve listeleme gibi işlemleri bu sayfa güzerinden gerçekleştirebilirsiniz.
+                    <p class="ReservationStatusd-subtitle mb-4">
+                        Rezervasyon Durumlarla ilgili ekleme, silme, güncelleme, arama ve listeleme gibi işlemleri bu sayfa güzerinden gerçekleştirebilirsiniz.
                     </p>
                 </div>
 
@@ -52,8 +52,7 @@
                         <tr>
                             <th>#</th>
                             <th>İkon</th>
-                            <th>Sosyal Medya Adı</th>
-                            <th>Url</th>
+                            <th>Rezervasyon Durum Adı</th>
                             <th>Aksiyon</th>
                         </tr>
                     </thead>
@@ -62,7 +61,7 @@
                             if (Model.Count == 0)
                             {
                                 <div class="alert alert-secondary" role="alert">
-                                    Herhangi bir Sosyal Medya bulunamadı.
+                                    Herhangi bir Rezervasyon Durum bulunamadı.
                                 </div>
                             }
                             else
@@ -74,14 +73,13 @@
                                         <th scope="row">@count</th>
                                         <td><i style="font-size:medium" class="@item.Icon"></i></td>
                                         <td>@item.Name</td>
-                                        <td><a href="@item.Url">@item.Url</a></td>
                                         <td>
 
-                                            <a href="/Admin/SocialMedia/UpdateSocialMedia/@item.SocialMediaId" class="btn btn-warning btn-rounded waves-effect waves-light">
+                                            <a href="/Admin/ReservationStatus/UpdateReservationStatus/@item.ReservationStatusId" class="btn btn-warning btn-rounded waves-effect waves-light">
                                                 <i class="mdi mdi-update"></i>  Güncelle
                                             </a>
 
-                                            <a href="/Admin/SocialMedia/DeleteSocialMedia/@item.SocialMediaId" class="btn btn-danger btn-rounded waves-effect waves-light">
+                                            <a href="/Admin/ReservationStatus/DeleteReservationStatus/@item.ReservationStatusId" class="btn btn-danger btn-rounded waves-effect waves-light">
                                                 <i class="mdi mdi-delete-forever"></i>  Sil
                                             </a>
                                         </td>
@@ -90,12 +88,11 @@
                                 }
                             }
                         }
-
                     </tbody>
                 </table>
             </div>
         </div>
-        <!-- end SocialMediad-body-->
+        <!-- end ReservationStatusd-body-->
     </div>
-    <!-- end SocialMediad -->
+    <!-- end ReservationStatusd -->
 </div>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CarBookProject.Application.Features.Mediator.Commands.ReservationCommands
 {
-    public class UpdateReservationCommand:IRequest
+    public class UpdateReservationCommand : IRequest
     {
         public int ReservationId { get; set; }
         public string Name { get; set; }
@@ -20,5 +20,6 @@ namespace CarBookProject.Application.Features.Mediator.Commands.ReservationComma
         public int Age { get; set; }
         public int DriverLicenseYear { get; set; }
         public string? Description { get; set; }
+        public int ReservationStatusId { get; set; }
     }
 }

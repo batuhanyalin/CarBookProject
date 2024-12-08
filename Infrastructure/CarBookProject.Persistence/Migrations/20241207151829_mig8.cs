@@ -11,6 +11,20 @@ namespace CarBookProject.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "ReservationStatuses",
+                columns: table => new
+                {
+                    ReservationStatusId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReservationStatuses", x => x.ReservationStatusId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Reservations",
                 columns: table => new
                 {
@@ -25,7 +39,8 @@ namespace CarBookProject.Persistence.Migrations
                     CarId = table.Column<int>(type: "int", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     DriverLicenseYear = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReservationStatusId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,6 +61,12 @@ namespace CarBookProject.Persistence.Migrations
                         column: x => x.PickUpLocationId,
                         principalTable: "Locations",
                         principalColumn: "LocationId");
+                    table.ForeignKey(
+                        name: "FK_Reservations_ReservationStatuses_ReservationStatusId",
+                        column: x => x.ReservationStatusId,
+                        principalTable: "ReservationStatuses",
+                        principalColumn: "ReservationStatusId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -62,6 +83,11 @@ namespace CarBookProject.Persistence.Migrations
                 name: "IX_Reservations_PickUpLocationId",
                 table: "Reservations",
                 column: "PickUpLocationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservations_ReservationStatusId",
+                table: "Reservations",
+                column: "ReservationStatusId");
         }
 
         /// <inheritdoc />
@@ -69,6 +95,9 @@ namespace CarBookProject.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Reservations");
+
+            migrationBuilder.DropTable(
+                name: "ReservationStatuses");
         }
     }
 }
