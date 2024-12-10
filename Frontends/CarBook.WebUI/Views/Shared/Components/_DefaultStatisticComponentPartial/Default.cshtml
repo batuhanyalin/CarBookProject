@@ -1,36 +1,37 @@
-﻿<section class="ftco-counter ftco-section img bg-light" id="section-counter">
+﻿@model StatisticDto
+<section class="ftco-counter ftco-section img bg-light" id="section-counter">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18">
                     <div class="text text-border d-flex align-items-center">
-                        <strong class="number" data-number="60">0</strong>
-                        <span>Year <br>Experienced</span>
+                        <strong class="number" data-number="@Model.carCount">0</strong>
+                        <span>Toplam <br>Araç</span>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18">
                     <div class="text text-border d-flex align-items-center">
-                        <strong class="number" data-number="1090">0</strong>
-                        <span>Total <br>Cars</span>
+                        <strong class="number" data-number="@Model.locationCount">0</strong>
+                        <span>Toplam <br>Lokasyon</span>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18">
                     <div class="text text-border d-flex align-items-center">
-                        <strong class="number" data-number="2590">0</strong>
-                        <span>Happy <br>Customers</span>
+                        <strong class="number" data-number="@Model.brandCount">0</strong>
+                        <span>Toplam <br>Marka</span>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
                 <div class="block-18">
                     <div class="text d-flex align-items-center">
-                        <strong class="number" data-number="67">0</strong>
-                        <span>Total <br>Branches</span>
+                        <strong class="number" data-number="@Model.getCarCountByFuelElectric">0</strong>
+                        <span>Elektrikli <br>Araç</span>
                     </div>
                 </div>
             </div>

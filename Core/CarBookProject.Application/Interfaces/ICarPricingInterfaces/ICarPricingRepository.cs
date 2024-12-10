@@ -13,5 +13,7 @@ namespace CarBookProject.Application.Interfaces.ICarPricingInterfaces
 		public List<CarPricing> GetCarPricingWithAllInfo();
 		public List<CarPricing> GetCarPricingWithTimePeriod();
 		public List<CarPricingViewModel> GetCarPricingWithTimePeriod1();
-	}
+		public List<CarPricing> GetCarLast5WithAllInfo();
+
+    }
 }

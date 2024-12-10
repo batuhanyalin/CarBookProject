@@ -1,4 +1,11 @@
 ﻿@model FilterRentACarDto
+
+<style>
+    #drop option {
+        color:black;
+    }
+</style>
+
 <section class="ftco-section ftco-no-pt bg-light">
     <div class="container">
         <div class="row no-gutters">
@@ -10,25 +17,25 @@
                             <h2>Şimdi Aracınızını Kiralayın</h2>
                             <div class="form-group">
                                 <label class="label">Alınacak Lokasyon</label>
-                                <select class="form-control" asp-for="LocationId" asp-items="@ViewBag.locationList"></select>
+                                <select class="form-control" id="drop" asp-for="LocationId" asp-items="@ViewBag.locationList"></select>
                             </div>
                             <div class="d-flex">
                                 <div class="form-group mr-2">
                                     <label for="" class="label">Alış Tarihi</label>
-                                    <input type="text" class="form-control" placeholder="Date">
+                                    <input type="date" class="form-control" >
                                 </div>
                                 <div class="form-group ml-2">
                                     <label for="" class="label">İade Tarihi</label>
-                                    <input type="text" class="form-control" placeholder="Date">
+                                    <input type="date" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="" class="label">Alış Saati</label>
-                                <input type="text" class="form-control"  placeholder="Time">
+                                <input type="time" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="" class="label">İade Saati</label>
-                                <input type="text" class="form-control"  placeholder="Time">
+                                <input type="time" class="form-control">
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Uygun Araçları Listele" class="btn btn-secondary py-3 px-4">

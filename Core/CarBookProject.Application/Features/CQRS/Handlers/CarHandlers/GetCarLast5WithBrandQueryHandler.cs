@@ -1,6 +1,5 @@
 ﻿using CarBookProject.Application.Features.CQRS.Results.CarResults;
-using CarBookProject.Application.Interfaces;
-using CarBookProject.Application.Interfaces.CarInterfaces;
+using CarBookProject.Application.Interfaces.ICarPricingInterfaces;
 using CarBookProject.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,28 +11,30 @@ namespace CarBookProject.Application.Features.CQRS.Handlers.CarHandlers
 {
     public class GetCarLast5WithBrandQueryHandler
     {
-        private readonly ICarRepository _carRepository;
+        private readonly ICarPricingRepository _carRepository;
 
-        public GetCarLast5WithBrandQueryHandler(ICarRepository carRepository)
+        public GetCarLast5WithBrandQueryHandler(ICarPricingRepository carRepository)
         {
             _carRepository = carRepository;
         }
         public List<GetCarLast5WithBrandQueryResult> Handle()
         {
-            var values = _carRepository.GetCarLast5WithBrand();
+            var values = _carRepository.GetCarLast5WithAllInfo();
             return values.Select(x => new GetCarLast5WithBrandQueryResult
             {
-                BigImageUrl = x.BigImageUrl,
-                BrandId = x.BrandId,
-                BrandName = x.Brand.Name,
+                BigImageUrl = x.Car.BigImageUrl,
+                BrandId = x.Car.BrandId,
+                BrandName = x.Car.Brand.Name,
                 CarId = x.CarId,
-                CoverImageUrl = x.CoverImageUrl,
-                Fuel = x.Fuel,
-                Km = x.Km,
-                Luggage = x.Luggage,
-                Model = x.Model,
-                Seat = x.Seat,
-                Transmission = x.Transmission,
+                CoverImageUrl = x.Car.CoverImageUrl,
+                Fuel = x.Car.Fuel,
+                Km = x.Car.Km,
+                Luggage = x.Car.Luggage,
+                Model = x.Car.Model,
+                Seat = x.Car.Seat,
+                Transmission = x.Car.Transmission,
+                PricingAmount=x.Price,
+                PricingName =x.Pricing.Name,
             }).ToList();
         }
     }
