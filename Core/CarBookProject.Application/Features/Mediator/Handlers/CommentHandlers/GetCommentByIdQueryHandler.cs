@@ -29,7 +29,8 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.CommentHandlers
                 CreatedDate = value.CreatedDate,
                 Name = value.Name,
                 Surname = value.Surname,
-                Text = value.Text
+                Text = value.Text,
+                Email= value.Email,
             };
         }
     }

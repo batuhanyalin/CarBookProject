@@ -27,6 +27,7 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.CommentHandlers
                 CreatedDate = request.CreatedDate,
                 Text = request.Text,
                 BlogId = request.BlogId,
+                Email = request.Email,
             });
         }
     }

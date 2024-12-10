@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarBookProject.Dto.CategoryDtos
+namespace CarBookProject.Application.Features.CQRS.Results.CategoryResults
 {
-    public class CategoryListDto
+    public class GetCategoryWithBlogCountQueryResult
     {
         public int CategoryId { get; set; }
         public string Name { get; set; }

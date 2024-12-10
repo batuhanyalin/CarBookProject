@@ -25,6 +25,8 @@
                 @await Component.InvokeAsync("_DefaultBlogDetailAuthorComponentPartial", new { id = ViewBag.id })
 
                 @await Component.InvokeAsync("_DefaultBlogDetailCommentComponentPartial", new { id = ViewBag.id })
+
+                @await Component.InvokeAsync("_DefaultBlogDetailMakeCommentComponentPartial", new { id = ViewBag.id , model = new CommentCreateDto() })
            
             </div> <!-- .col-md-8 -->
             @await Component.InvokeAsync("_DefaultBlogDetailSideBarComponentPartial")

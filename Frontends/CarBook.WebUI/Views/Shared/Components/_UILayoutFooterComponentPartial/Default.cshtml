@@ -37,11 +37,7 @@
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2"><a href="#" class="logo">Car<span>book</span></a></h2>
                     <p>@ViewBag.description</p>
-                    <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                    </ul>
+                    @await Component.InvokeAsync("_UILayoutFooterSocialMediaComponentPartial")
                 </div>
             </div>
             <div class="col-md">
@@ -90,7 +86,7 @@
 
                 <p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm Hakları Saklıdır | <a href="https://github.com/batuhanyalin/CarBookProject" title="Proje kodlarına gitmek için tıklayın" target="_blank">Batuhan YALIN</a> tarafından yapılmıştır. Github Repo: <a href="https://github.com/batuhanyalin/carbookproject"><i style="font-size:medium" class="fab fa-github"></i></a>
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm Hakları Saklıdır | <a href="https://github.com/batuhanyalin/" target="_blank">Batuhan YALIN</a> tarafından yapılmıştır. Github Repo: <a title="Proje kodlarına gitmek için tıklayın" href="https://github.com/batuhanyalin/carbookproject"><i style="font-size:medium" class="fab fa-github"></i></a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </p>
             </div>

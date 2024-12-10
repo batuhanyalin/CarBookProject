@@ -26,6 +26,7 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.CommentHandlers
             value.Name = request.Name;
             value.Text = request.Text;
             value.BlogId = request.BlogId;
+            value.Email = request.Email;
             await _repository.UpdateAsync(value);
         }
     }

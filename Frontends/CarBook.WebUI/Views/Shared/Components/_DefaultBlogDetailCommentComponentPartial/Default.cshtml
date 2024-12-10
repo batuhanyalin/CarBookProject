@@ -10,6 +10,7 @@
                 </div>
                 <div class="comment-body">
                     <h3>@item.Name @item.Surname</h3>
+                    <h5>@item.Email</h5>
                     <div class="meta">@item.CreatedDate.ToString("dd MMM yyy HH:ss")</div>
                     <p>
                         @item.Text
@@ -17,8 +18,8 @@
                 </div>
             </li>
         }
-
     </ul>
     <!-- END comment-list -->
-    @await Component.InvokeAsync("_DefaultBlogDetailMakeCommentComponentPartial")
+  @*   @await Component.InvokeAsync("_DefaultBlogDetailMakeCommentComponentPartial", new { model = new CommentCreateDto() }) *@
+
 </div>

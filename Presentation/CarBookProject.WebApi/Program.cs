@@ -8,6 +8,7 @@ using CarBookProject.Application.Features.Mediator.Handlers.BlogHandlers;
 using CarBookProject.Application.Interfaces;
 using CarBookProject.Application.Interfaces.BlogInterfaces;
 using CarBookProject.Application.Interfaces.CarInterfaces;
+using CarBookProject.Application.Interfaces.CategoryInterfaces;
 using CarBookProject.Application.Interfaces.CommentInterfaces;
 using CarBookProject.Application.Interfaces.ContactInterfaces;
 using CarBookProject.Application.Interfaces.ICarPricingInterfaces;
@@ -21,6 +22,7 @@ using CarBookProject.Persistence.Repositories;
 using CarBookProject.Persistence.Repositories.BlogRepositories;
 using CarBookProject.Persistence.Repositories.CarPricingRepositories;
 using CarBookProject.Persistence.Repositories.CarRepositories;
+using CarBookProject.Persistence.Repositories.CategoryRepositories;
 using CarBookProject.Persistence.Repositories.CommentRepositories;
 using CarBookProject.Persistence.Repositories.ContactRepositories;
 using CarBookProject.Persistence.Repositories.RentACarRepositories;
@@ -42,6 +44,7 @@ builder.Services.AddScoped(typeof(IContactRepository), typeof(ContactRepository)
 builder.Services.AddScoped(typeof(IStatisticRepository), typeof(StatisticRepository));
 builder.Services.AddScoped(typeof(IRentACarRepository), typeof(RentACarRepository));
 builder.Services.AddScoped(typeof(IReservationRepository), typeof(ReservationRepository));
+builder.Services.AddScoped(typeof(ICategoryRepository), typeof(CategoryRepository));
 
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
@@ -75,6 +78,7 @@ builder.Services.AddScoped<GetCategoryByIdQueryHandler>();
 builder.Services.AddScoped<CreateCategoryCommandHandler>();
 builder.Services.AddScoped<UpdateCategoryCommandHandler>();
 builder.Services.AddScoped<DeleteCategoryCommandHandler>();
+builder.Services.AddScoped<GetCategoryWithBlogCountQueryHandler>();
 
 builder.Services.AddScoped<GetContactQueryHandler>();
 builder.Services.AddScoped<GetContactByIdQueryHandler>();

@@ -15,19 +15,27 @@ namespace CarBookProject.WebApi.Controllers
         private readonly DeleteCategoryCommandHandler _deleteCommandHandler;
         private readonly GetCategoryByIdQueryHandler _getCategoryByIdQueryHandler;
         private readonly GetCategoryQueryHandler _getCategoryQueryHandler;
+        private readonly GetCategoryWithBlogCountQueryHandler _getCategoryWithBlogCountQueryHandler;
 
-        public CategoriesController(CreateCategoryCommandHandler createCommandHandler, UpdateCategoryCommandHandler updateCommandHandler, DeleteCategoryCommandHandler deleteCommandHandler, GetCategoryByIdQueryHandler getCategoryByIdQueryHandler, GetCategoryQueryHandler getCategoryQueryHandler)
+        public CategoriesController(CreateCategoryCommandHandler createCommandHandler, UpdateCategoryCommandHandler updateCommandHandler, DeleteCategoryCommandHandler deleteCommandHandler, GetCategoryByIdQueryHandler getCategoryByIdQueryHandler, GetCategoryQueryHandler getCategoryQueryHandler, GetCategoryWithBlogCountQueryHandler getCategoryWithBlogCountQueryHandler)
         {
             _createCommandHandler = createCommandHandler;
             _updateCommandHandler = updateCommandHandler;
             _deleteCommandHandler = deleteCommandHandler;
             _getCategoryByIdQueryHandler = getCategoryByIdQueryHandler;
             _getCategoryQueryHandler = getCategoryQueryHandler;
+            _getCategoryWithBlogCountQueryHandler = getCategoryWithBlogCountQueryHandler;
         }
         [HttpGet]
         public async Task<IActionResult> ListCategory()
         {
             var values = await _getCategoryQueryHandler.Handle();
+            return Ok(values);
+        }
+        [HttpGet("GetCategoryListWitBlogCount")]
+        public async Task<IActionResult> GetCategoryListWitBlogCount()
+        {
+            var values = await _getCategoryWithBlogCountQueryHandler.Handle();
             return Ok(values);
         }
         [HttpGet("{id}")]
