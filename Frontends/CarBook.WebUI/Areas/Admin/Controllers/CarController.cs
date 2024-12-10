@@ -44,7 +44,6 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-
         [Route("CreateCar")]
         [HttpGet]
         public async Task<IActionResult> CreateCar()
