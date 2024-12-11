@@ -1,33 +1,57 @@
-﻿<div class="col-lg-4">
+﻿﻿<script src="~/chart.js"></script>
+
+<div class="col-lg-2">
     <div class="card">
         <div class="card-body">
-            <div class="dropdown float-right position-relative">
-                <a href="#" class="dropdown-toggle h4 text-muted" data-toggle="dropdown"
-                   aria-expanded="false">
-                    <i class="mdi mdi-dots-vertical"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#" class="dropdown-item">Action</a></li>
-                    <li><a href="#" class="dropdown-item">Another action</a></li>
-                    <li><a href="#" class="dropdown-item">Something else here</a></li>
-                    <li class="dropdown-divider"></li>
-                    <li><a href="#" class="dropdown-item">Separated link</a></li>
-                </ul>
-            </div>
-            <h4 class="card-title d-inline-block">Daily Sales</h4>
 
-            <div id="morris-donut-example" class="morris-chart" style="height: 260px;"></div>
+            <h4 class="card-title d-inline-block">Araç Marka Sayılar</h4>
+
+            <div style="height:260px;">
+                <canvas id="my2Chart" height="220"></canvas>
+                <script>
+                    var values = document.getElementById('my2Chart').getContext('2d');
+                    var myChart = new Chart(values, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Volkwagen', 'Renault', 'Bmw', 'Fiat', 'Skoda', 'Mercedes'],
+                            datasets: [{
+                                label: 'Marka Grafik Listesi',
+                                data: [14, 11, 4, 10, 6, 3],
+                                backgroundColor:[
+                                    'rgba(255,99,132,0.7)',
+                                    'rgba(54,162,235,0.7)',
+                                    'rgba(255,206,86,0.7)',
+                                    'rgba(75,192,192,0.7)',
+                                    'rgba(153,102,255,0.7)',
+                                    'rgba(255,159,64,0.7)',
+                                ],
+                                borderColor: [
+                                    'rgba(255,99,132,1)',
+                                    'rgba(54,162,235,1)',
+                                    'rgba(255,206,86,1)',
+                                    'rgba(75,192,192,1)',
+                                    'rgba(153,102,255,1)',
+                                    'rgba(255,159,64,1)',
+                                ],
+                                borderWidth: 1
+                            }]
+                        }
+                    });
+                </script>
+
+
+            </div>
 
             <div class="row text-center mt-4">
                 <div class="col-6">
-                    <h4>5,459</h4>
-                    <p class="text-muted mb-0">Total Sales</p>
+                    <h4>48</h4>
+                    <p class="text-muted mb-0">Araç Sayısı</p>
                 </div>
                 <div class="col-6">
-                    <h4>18</h4>
-                    <p class="text-muted mb-0">Open Compaign</p>
+                    <h4>6</h4>
+                    <p class="text-muted mb-0">Marka Sayısı</p>
                 </div>
             </div>
         </div>
     </div>
-</div> <!-- end col -->
+</div>

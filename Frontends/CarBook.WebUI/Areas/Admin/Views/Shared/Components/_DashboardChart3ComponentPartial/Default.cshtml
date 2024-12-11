@@ -1,33 +1,59 @@
-﻿<div class="col-lg-4">
+﻿﻿<script src="~/chart.js"></script>
+
+<div class="col-lg-5">
     <div class="card">
         <div class="card-body">
-            <div class="dropdown float-right position-relative">
-                <a href="#" class="dropdown-toggle h4 text-muted" data-toggle="dropdown"
-                   aria-expanded="false">
-                    <i class="mdi mdi-dots-vertical"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#" class="dropdown-item">Action</a></li>
-                    <li><a href="#" class="dropdown-item">Another action</a></li>
-                    <li><a href="#" class="dropdown-item">Something else here</a></li>
-                    <li class="dropdown-divider"></li>
-                    <li><a href="#" class="dropdown-item">Separated link</a></li>
-                </ul>
-            </div>
-            <h4 class="card-title d-inline-block">Total Revenue</h4>
 
-            <div id="morris-line-example" class="morris-chart" style="height: 260px;"></div>
+            <h4 class="card-title d-inline-block">Lokasyon Verileri</h4>
+
+            <div style="height:260px;">
+                <canvas id="my3Chart" width="700" height="220"></canvas>
+                <script>
+                    var values = document.getElementById('my3Chart').getContext('2d');
+                    var myChart = new Chart(values, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Sabiha Gökçen H.L.', 'Kadıköy Rıhtım', 'Kartal Köprüsü', 'İstanbul Havalimanı', 'Maltepe Sahil', 'Bahçelievler Meydan','Çorlu'],
+                            datasets: [{
+                                label: 'Araç - Lokasyon Grafiği',
+                                data: [16, 5, 4, 13, 5, 3,2],
+                                backgroundColor: [
+                                    'rgba(255,99,132,0.7)',
+                                    'rgba(54,162,235,0.7)',
+                                    'rgba(255,206,86,0.7)',
+                                    'rgba(75,192,192,0.7)',
+                                    'rgba(153,102,255,0.7)',
+                                    'rgba(255,159,64,0.7)',
+                                    'rgba(185,114,21,0.7)',
+                                ],
+                                borderColor: [
+                                    'rgba(255,99,132,1)',
+                                    'rgba(54,162,235,1)',
+                                    'rgba(255,206,86,1)',
+                                    'rgba(75,192,192,1)',
+                                    'rgba(153,102,255,1)',
+                                    'rgba(255,159,64,1)',
+                                    'rgba(185,114,21,1)',
+                                ],
+                                borderWidth: 1
+                            }]
+                        }
+                    });
+                </script>
+
+
+            </div>
 
             <div class="row text-center mt-4">
                 <div class="col-6">
-                    <h4>$7841.12</h4>
-                    <p class="text-muted mb-0">Total Revenue</p>
+                    <h4>7</h4>
+                    <p class="text-muted mb-0">Lokasyon Sayısı</p>
                 </div>
                 <div class="col-6">
-                    <h4>17</h4>
-                    <p class="text-muted mb-0">Open Compaign</p>
+                    <h4>11</h4>
+                    <p class="text-muted mb-0">Müsait Araç Sayısı</p>
                 </div>
             </div>
         </div>
     </div>
-</div> <!-- end col -->
+</div>
