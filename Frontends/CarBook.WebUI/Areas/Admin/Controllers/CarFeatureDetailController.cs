@@ -1,4 +1,5 @@
 ﻿using CarBookProject.Dto.CarFeatureDtos;
+using CarBookProject.Dto.FeatureDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http;
@@ -55,6 +56,20 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
                 }
             }
             return RedirectToAction("Index", "Car", new { area = "Admin" });
+        }
+        [Route("CreateFeatureByCarId/{id:int}")]
+        [HttpGet]
+        public async Task<IActionResult> CreateFeatureByCarId(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync("https://localhost:7286/api/Features");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<FeatureListDto>>(jsonData);
+                return View(values);
+            }
+            return View();
         }
     }
 }

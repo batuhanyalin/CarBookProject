@@ -1,0 +1,86 @@
+﻿@model StatisticDto
+<div class="row">
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-primary border-primary">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Aktif Araçlar</span>
+                    <h5 class="card-title mb-0 text-white">Toplam Araç Sayısı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center mb-0 text-white">
+                            @Model.carCount Araç
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"> <i style="font-size:larger" class="fas fa-car-side"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-success border-success">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Mevcut Lokasyonlar</span>
+                    <h5 class="card-title mb-0 text-white">Kiralama Lokasyon Sayısı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.locationCount Lokasyon
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"> <i style="font-size:larger" class="fas fa-map-marked-alt"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-warning border-warning">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Mevcut Markalar</span>
+                    <h5 class="card-title mb-0 text-white">Toplam Marka Sayısı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.brandCount Marka
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"> <i style="font-size:larger" class="fas fa-business-time"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col-->
+
+    <div class="col-md-6 col-xl-3">
+        <div class="card bg-info border-info">
+            <div class="card-body">
+                <div class="mb-4">
+                    <span class="badge badge-soft-light float-right">Günlük</span>
+                    <h5 class="card-title mb-0 text-white">Ortalama Araç Fiyatı</h5>
+                </div>
+                <div class="row d-flex align-items-center mb-4">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center text-white mb-0">
+                            @Model.getAvgRentPriceForDaily.ToString("0.00") ₺
+                        </h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <h1 class="text-white-50"><i style="font-size:larger" class="fas fa-money-bill-wave"></i></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- end col-->
+</div>

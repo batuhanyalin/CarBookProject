@@ -16,7 +16,7 @@ namespace CarBookProject.WebApi.Controllers
         public CarFeaturesController(IMediator mediator)
         {
             _mediator = mediator;
-        }    
+        }
         [HttpGet("GetCarFeatureListByCarId/{id:int}")]
         public async Task<IActionResult> GetCarFeatureListByCarId(int id)
         {
@@ -39,6 +39,12 @@ namespace CarBookProject.WebApi.Controllers
         public async Task<IActionResult> CarFeatureChangeAvailableToTrue(int id)
         {
             await _mediator.Send(new UpdateCarFeatureAvailableChangeToTrueCommand(id));
+            return Ok();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateCarFeatureByCarId(CreateCarFeatureByCarCommand command)
+        {
+            _mediator.Send(command);
             return Ok();
         }
     }
