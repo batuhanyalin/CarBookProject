@@ -19,11 +19,13 @@ namespace CarBookProject.Domain.Entities
         public byte Luggage { get; set; }
         public string Fuel { get; set; }
         public string BigImageUrl { get; set; }
+        public string Description { get; set; }
         public List<CarFeature> CarFeatures { get; set; }
         public List<CarDescription> CarDescriptions { get; set; }
         public List<CarPricing> CarPricings { get; set; }
         public List<RentACar> RentACars { get; set; }
         public List<RentACarProcess> RentACarProcesses { get; set; }
         public List<Reservation> Reservations { get; set; }
+        public List<Review> Reviews { get; set; }
     }
 }

@@ -1,0 +1,21 @@
+﻿@model List<CarFeatureListByCarIdDto>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3">
+            <ul class="features">
+                @{
+                    if (item.available == true)
+                    {
+                        <li class="check"><span class="ion-ios-checkmark"></span>@item.featureName</li>
+                    }
+                    else
+                    {
+                        <li class="remove"><span class="ion-ios-close"></span>@item.featureName</li>
+                    }
+                }
+            </ul>
+        </div>
+    }
+</div>

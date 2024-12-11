@@ -35,6 +35,7 @@ namespace CarBookProject.Application.Features.CQRS.Handlers.CarHandlers
                 Seat = value.Seat,
                 Transmission = value.Transmission,
                 BrandName=value.Brand.Name,
+                Description = value.Description,
             };
         }
     }

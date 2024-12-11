@@ -31,6 +31,7 @@ namespace CarBookProject.Application.Features.CQRS.Handlers.CarHandlers
             value.Luggage = command.Luggage;
             value.Model = command.Model;
             value.BrandId = command.BrandId;
+            value.Description = command.Description;  
             await _repository.UpdateAsync(value);
         }
     }

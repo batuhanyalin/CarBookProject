@@ -35,6 +35,7 @@ namespace CarBookProject.Application.Features.CQRS.Handlers.CarHandlers
                 Transmission = x.Car.Transmission,
                 PricingAmount=x.Price,
                 PricingName =x.Pricing.Name,
+                Description = x.Car.Description,
             }).ToList();
         }
     }

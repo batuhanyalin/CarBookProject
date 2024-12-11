@@ -30,6 +30,7 @@ namespace CarBookProject.Application.Features.CQRS.Handlers.CarHandlers
                 Model=command.Model,
                 Seat=command.Seat,
                 Transmission=command.Transmission,              
+                Description=command.Description,              
             });
         }
     }

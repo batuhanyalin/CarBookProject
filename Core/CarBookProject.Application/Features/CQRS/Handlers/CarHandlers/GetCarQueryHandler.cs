@@ -32,6 +32,7 @@ namespace CarBookProject.Application.Features.CQRS.Handlers.CarHandlers
                 Model = x.Model,
                 Seat = x.Seat,
                 Transmission = x.Transmission,
+                Description = x.Description,
             }).ToList();
         }
     }

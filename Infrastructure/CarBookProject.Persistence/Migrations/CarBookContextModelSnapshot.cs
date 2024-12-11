@@ -183,6 +183,10 @@ namespace CarBookProject.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Fuel")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -666,6 +670,50 @@ namespace CarBookProject.Persistence.Migrations
                     b.ToTable("ReservationStatuses");
                 });
 
+            modelBuilder.Entity("CarBookProject.Domain.Entities.Review", b =>
+                {
+                    b.Property<int>("ReviewId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewId"));
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ReviewId");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("Reviews");
+                });
+
             modelBuilder.Entity("CarBookProject.Domain.Entities.Service", b =>
                 {
                     b.Property<int>("ServiceId")
@@ -959,6 +1007,17 @@ namespace CarBookProject.Persistence.Migrations
                     b.Navigation("ReservationStatus");
                 });
 
+            modelBuilder.Entity("CarBookProject.Domain.Entities.Review", b =>
+                {
+                    b.HasOne("CarBookProject.Domain.Entities.Car", "Car")
+                        .WithMany("Reviews")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Car");
+                });
+
             modelBuilder.Entity("CarBookProject.Domain.Entities.TagBlog", b =>
                 {
                     b.HasOne("CarBookProject.Domain.Entities.Blog", "Blog")
@@ -1008,6 +1067,8 @@ namespace CarBookProject.Persistence.Migrations
                     b.Navigation("RentACars");
 
                     b.Navigation("Reservations");
+
+                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("CarBookProject.Domain.Entities.Category", b =>

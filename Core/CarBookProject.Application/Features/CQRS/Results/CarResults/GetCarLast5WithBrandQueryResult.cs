@@ -21,5 +21,6 @@ namespace CarBookProject.Application.Features.CQRS.Results.CarResults
         public string BigImageUrl { get; set; }
         public string PricingName { get; set; }
         public decimal PricingAmount { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -39,6 +39,7 @@ namespace CarBookProject.Persistence.Context
         public DbSet<RentACar> RentACars { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<ReservationStatus> ReservationStatuses { get; set; }
+        public DbSet<Review> Reviews { get; set; }
         //OnModelCreating
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
