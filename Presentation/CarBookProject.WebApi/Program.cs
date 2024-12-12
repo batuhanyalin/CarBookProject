@@ -34,6 +34,7 @@ using CarBookProject.Persistence.Repositories.ReservationRepositories;
 using CarBookProject.Persistence.Repositories.ReviewRepositories;
 using CarBookProject.Persistence.Repositories.StatisticRepositories;
 using CarBookProject.Persistence.Repositories.TagBlogRepositories;
+using CarBookProject.WebApi.Hubs;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -41,6 +42,20 @@ using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//SignalR CORS Konfigürasyonu
+builder.Services.AddCors(opt =>
+{
+	opt.AddPolicy("CorsPolicy", builder =>
+	{
+		builder.AllowAnyHeader()
+		.AllowAnyMethod()
+		.SetIsOriginAllowed((host) => true)
+		.AllowCredentials();
+	});
+});
+builder.Services.AddSignalR();
+
 
 // Add services to the container.
 
@@ -59,6 +74,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 	};
 });
 
+#region InterfacesClass
+
 builder.Services.AddScoped<CarBookContext>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>)); //** Typeof ile Repository sýnýfýný  tanýmlýyoruz.
 builder.Services.AddScoped(typeof(ICarRepository), typeof(CarRepository));
@@ -73,7 +90,9 @@ builder.Services.AddScoped(typeof(IReservationRepository), typeof(ReservationRep
 builder.Services.AddScoped(typeof(ICategoryRepository), typeof(CategoryRepository));
 builder.Services.AddScoped(typeof(ICarFeatureRepository), typeof(CarFeatureRepository));
 builder.Services.AddScoped(typeof(IReviewRepository), typeof(ReviewRepository));
+#endregion
 
+#region CQRSHandlers
 builder.Services.AddScoped<GetAboutQueryHandler>();
 builder.Services.AddScoped<GetAboutByIdQueryHandler>();
 builder.Services.AddScoped<CreateAboutCommandHandler>();
@@ -123,7 +142,7 @@ builder.Services.AddScoped<DeleteBlogCommandHandler>();
 builder.Services.AddScoped<GetBlogWithAllInfoByIdQueryHandler>();
 builder.Services.AddScoped<GetBlogLast3WithAllInfoQueryHandler>();
 builder.Services.AddScoped<GetBlogWithAllInfoQueryHandler>();
-
+#endregion 
 
 builder.Services.AddApplicationService(builder.Configuration);//ServiceRegistration sýnýfýnýn içindeki metodu çaðýrýyoruz.
 
@@ -145,11 +164,11 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
-
+app.UseCors("CorsPolicy"); //Cors Konfigürasyonu
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapHub<CarHub>("/carhub"); //SignalR tarafýna istek yapmayý saðlayan yapý.
 app.Run();
