@@ -2,13 +2,15 @@
 using CarBookProject.Application.Features.Mediator.Queries.LocationQueries;
 using CarBookProject.Application.Features.Mediator.Queries.TestimonialQueries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarBookProject.WebApi.Controllers
 {
+    [Authorize(Roles ="Admin")]
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController] 
     public class LocationsController : ControllerBase
     {
         private readonly IMediator _mediator;
