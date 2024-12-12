@@ -42,6 +42,7 @@ using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpClient();
 
 //SignalR CORS Konfigürasyonu
 builder.Services.AddCors(opt =>

@@ -17,7 +17,13 @@
                             $("#constatus").text(connection.state);
                             connection.start().then(() => {
                                 $("#constatus").text(connection.state);
+                                connection.invoke("SendCarCount"); //İlgili metoda bağlanıyoruz.
+
                             }).catch((err) => { console.log(err) });
+
+                            connection.on("ReceiveStatistic", (value) => {
+                                $("#carcount").text(value);
+                            });
                         });
                     </script>
                 </div>
@@ -27,8 +33,14 @@
 }
 
 <div class="row">
-    <div class="col-md-8 offset-2">
-        <div class="alert alert-info">Bağlantının Durumu: <strong id="constatus"></strong>
-</div>
+    <div class="col-md-6 offset-2">
+        <div class="alert alert-info">
+            Bağlantının Durumu: <strong id="constatus"></strong>
+        </div>
+    </div>
+    <div class="col-md-6 offset-2">
+        <div class="alert alert-info">
+            Araba Sayısı: <strong id="carcount"></strong>
+        </div>
     </div>
 </div>
