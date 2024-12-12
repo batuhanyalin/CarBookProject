@@ -32,7 +32,8 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.ReviewHandlers
                 IsApproved = x.IsApproved,
                 Surname = x.Surname,
                 Text = x.Text,
-                CreatedDate = x.CreatedDate
+                CreatedDate = x.CreatedDate,
+                CarId=x.CarId,
             }).ToList();
         }
     }

@@ -30,6 +30,7 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.ReviewHandlers
             value.IsApproved = request.IsApproved;
             value.CreatedDate = request.CreatedDate;
             value.ImageUrl = request.ImageUrl;
+            value.CarId = request.CarId;
             await _repository.UpdateAsync(value);
         }
     }

@@ -32,7 +32,8 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.ReviewHandlers
                 Surname = value.Surname,
                 IsApproved = value.IsApproved,
                 ImageUrl = value.ImageUrl,
-                Email = value.Email
+                Email = value.Email,
+                CarId = value.CarId,
             };
         }
     }

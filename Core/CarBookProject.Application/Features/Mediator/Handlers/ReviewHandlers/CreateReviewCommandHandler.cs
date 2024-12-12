@@ -30,6 +30,7 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.ReviewHandlers
                 IsApproved = request.IsApproved,
                 Surname = request.Surname,
                 Text = request.Text,
+                CarId = request.CarId,
             });
         }
     }

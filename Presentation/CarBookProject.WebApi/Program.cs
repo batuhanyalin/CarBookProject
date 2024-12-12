@@ -33,6 +33,8 @@ using CarBookProject.Persistence.Repositories.ReservationRepositories;
 using CarBookProject.Persistence.Repositories.ReviewRepositories;
 using CarBookProject.Persistence.Repositories.StatisticRepositories;
 using CarBookProject.Persistence.Repositories.TagBlogRepositories;
+using FluentValidation.AspNetCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -106,7 +108,11 @@ builder.Services.AddScoped<GetBlogWithAllInfoQueryHandler>();
 builder.Services.AddApplicationService(builder.Configuration);//ServiceRegistration sýnýfýnýn içindeki metodu çaðýrýyoruz.
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddFluentValidation(x =>
+{
+	x.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
