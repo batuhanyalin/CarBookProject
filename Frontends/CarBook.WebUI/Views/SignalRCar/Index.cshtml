@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+
+
+@section Scripts
+{
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="card">
+                    <script type="text/javascript">
+                        $(document).ready(() => {
+                            var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7286/CarHub").build();
+                            $("#constatus").text(connection.state);
+                            connection.start().then(() => {
+                                $("#constatus").text(connection.state);
+                            }).catch((err) => { console.log(err) });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="alert alert-info">Bağlantının Durumu: <strong id="constatus"></strong>
+</div>
+    </div>
+</div>
