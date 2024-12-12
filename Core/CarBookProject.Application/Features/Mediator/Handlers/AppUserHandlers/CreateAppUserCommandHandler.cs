@@ -26,7 +26,10 @@ namespace CarBookProject.Application.Features.Mediator.Handlers.AppUserHandlers
             {
                 AppRoleId = (int)RolesType.Member, //Enum kullanımı
                 Username =request.Username,
-                Password=request.Password
+                Password=request.Password,
+                Email=request.Email,
+                Name = request.Name,
+                Surname = request.Surname,
              });
 
         }
