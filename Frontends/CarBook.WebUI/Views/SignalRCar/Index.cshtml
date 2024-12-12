@@ -16,9 +16,10 @@
                             var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7286/CarHub").build();
                             $("#constatus").text(connection.state);
                             connection.start().then(() => {
-                                $("#constatus").text(connection.state);
-                                connection.invoke("SendCarCount"); //İlgili metoda bağlanıyoruz.
-
+                                $("#constatus").text(connection.state);                     
+                                setInterval(() => {
+                                    connection.invoke("SendCarCount"); //İlgili metoda bağlanıyoruz.
+                                }, 1000); //kaç saniyede bir yenileme yapılacağını belirliyoruz.
                             }).catch((err) => { console.log(err) });
 
                             connection.on("ReceiveStatistic", (value) => {

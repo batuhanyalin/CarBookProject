@@ -22,7 +22,7 @@ namespace CarBookProject.WebApi.Hubs
                 var jsonData= await responseMessage.Content.ReadAsStringAsync();
                 var values= JsonConvert.DeserializeObject<StatisticDto>(jsonData);
                 
-                await Clients.All.SendAsync("ReceiveStatistic",values.carCount);
+                await Clients.All.SendAsync("ReceiveStatistic",values.brandCount);
             }
         }
     }
