@@ -6,7 +6,7 @@ Proje bir araç kiralama uygulamasıdır. Kullanıcılar lokasyona göre araçla
 
 ## 🛠️ Kullanılan Bazı Teknolojiler
 * 🌟 Onion Architecture mimarisiyle ve 
-* ✨ Proje CQRS ve Mediator design patterns üzerine kuruldu.
+* ✨ Proje CQRS ve Mediator Design Patterns üzerine kuruldu.
 * 🌟 DbCodeFirst ile MSSQL veritabanı oluşturulup yönetimi sağlandı.
 * ✨ Entity Framework 8.0 Veritabanı etkileşimi ve ORM için kullanıldı.
 * 🌟 JWT Token ile süre bazlı token oluşturup POSTMAN ile testleri yapıldı.
@@ -20,7 +20,7 @@ Proje bir araç kiralama uygulamasıdır. Kullanıcılar lokasyona göre araçla
 * 🌟 Fluent Validation - kontrol sistemi kullanılarak veirlerin belli kurallara göre alınması sağlandı.
 * ✨ Area sistemiyle paneller birbirinden ayrılıp yönetimi kolaylaştırıldı.
 * 🌟 Projede bol bol iç içe layout ve ViewComponent yapısı kullanıldı.
-* ✨ Linq sorguları
+* ✨ Adonet ve Linq Sorguları
 
 
 # Veritabanı
